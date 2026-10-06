@@ -1,0 +1,2810 @@
+# ---- /etc/sonic/config_db.json (fragment) ----
+{
+  "DEVICE_METADATA": {
+    "localhost": {
+      "bgp_asn": "4200000000",
+      "hostname": "p0-sp000-lf000",
+      "type": "LeafRouter"
+    }
+  },
+  "DSCP_TO_TC_MAP": {
+    "AZURE": {
+      "26": "3",
+      "48": "6"
+    }
+  },
+  "INTERFACE": {
+    "Ethernet0": {},
+    "Ethernet0|10.0.0.0/31": {},
+    "Ethernet100": {},
+    "Ethernet100|10.0.0.50/31": {},
+    "Ethernet104": {},
+    "Ethernet104|10.0.0.52/31": {},
+    "Ethernet108": {},
+    "Ethernet108|10.0.0.54/31": {},
+    "Ethernet112": {},
+    "Ethernet112|10.0.0.56/31": {},
+    "Ethernet116": {},
+    "Ethernet116|10.0.0.58/31": {},
+    "Ethernet12": {},
+    "Ethernet120": {},
+    "Ethernet120|10.0.0.60/31": {},
+    "Ethernet124": {},
+    "Ethernet124|10.0.0.62/31": {},
+    "Ethernet128": {},
+    "Ethernet128|10.0.0.64/31": {},
+    "Ethernet12|10.0.0.6/31": {},
+    "Ethernet132": {},
+    "Ethernet132|10.0.0.66/31": {},
+    "Ethernet136": {},
+    "Ethernet136|10.0.0.68/31": {},
+    "Ethernet140": {},
+    "Ethernet140|10.0.0.70/31": {},
+    "Ethernet144": {},
+    "Ethernet144|10.0.0.72/31": {},
+    "Ethernet148": {},
+    "Ethernet148|10.0.0.74/31": {},
+    "Ethernet152": {},
+    "Ethernet152|10.0.0.76/31": {},
+    "Ethernet156": {},
+    "Ethernet156|10.0.0.78/31": {},
+    "Ethernet16": {},
+    "Ethernet160": {},
+    "Ethernet160|10.0.0.80/31": {},
+    "Ethernet164": {},
+    "Ethernet164|10.0.0.82/31": {},
+    "Ethernet168": {},
+    "Ethernet168|10.0.0.84/31": {},
+    "Ethernet16|10.0.0.8/31": {},
+    "Ethernet172": {},
+    "Ethernet172|10.0.0.86/31": {},
+    "Ethernet176": {},
+    "Ethernet176|10.0.0.88/31": {},
+    "Ethernet180": {},
+    "Ethernet180|10.0.0.90/31": {},
+    "Ethernet184": {},
+    "Ethernet184|10.0.0.92/31": {},
+    "Ethernet188": {},
+    "Ethernet188|10.0.0.94/31": {},
+    "Ethernet192": {},
+    "Ethernet192|10.0.0.96/31": {},
+    "Ethernet196": {},
+    "Ethernet196|10.0.0.98/31": {},
+    "Ethernet20": {},
+    "Ethernet200": {},
+    "Ethernet200|10.0.0.100/31": {},
+    "Ethernet204": {},
+    "Ethernet204|10.0.0.102/31": {},
+    "Ethernet208": {},
+    "Ethernet208|10.0.0.104/31": {},
+    "Ethernet20|10.0.0.10/31": {},
+    "Ethernet212": {},
+    "Ethernet212|10.0.0.106/31": {},
+    "Ethernet216": {},
+    "Ethernet216|10.0.0.108/31": {},
+    "Ethernet220": {},
+    "Ethernet220|10.0.0.110/31": {},
+    "Ethernet224": {},
+    "Ethernet224|10.0.0.112/31": {},
+    "Ethernet228": {},
+    "Ethernet228|10.0.0.114/31": {},
+    "Ethernet232": {},
+    "Ethernet232|10.0.0.116/31": {},
+    "Ethernet236": {},
+    "Ethernet236|10.0.0.118/31": {},
+    "Ethernet24": {},
+    "Ethernet240": {},
+    "Ethernet240|10.0.0.120/31": {},
+    "Ethernet244": {},
+    "Ethernet244|10.0.0.122/31": {},
+    "Ethernet248": {},
+    "Ethernet248|10.0.0.124/31": {},
+    "Ethernet24|10.0.0.12/31": {},
+    "Ethernet252": {},
+    "Ethernet252|10.0.0.126/31": {},
+    "Ethernet256": {},
+    "Ethernet256|100.64.0.0/31": {},
+    "Ethernet260": {},
+    "Ethernet260|100.64.0.2/31": {},
+    "Ethernet264": {},
+    "Ethernet264|100.64.0.4/31": {},
+    "Ethernet268": {},
+    "Ethernet268|100.64.0.6/31": {},
+    "Ethernet272": {},
+    "Ethernet272|100.64.0.8/31": {},
+    "Ethernet276": {},
+    "Ethernet276|100.64.0.10/31": {},
+    "Ethernet28": {},
+    "Ethernet280": {},
+    "Ethernet280|100.64.0.12/31": {},
+    "Ethernet284": {},
+    "Ethernet284|100.64.0.14/31": {},
+    "Ethernet288": {},
+    "Ethernet288|100.64.0.16/31": {},
+    "Ethernet28|10.0.0.14/31": {},
+    "Ethernet292": {},
+    "Ethernet292|100.64.0.18/31": {},
+    "Ethernet296": {},
+    "Ethernet296|100.64.0.20/31": {},
+    "Ethernet300": {},
+    "Ethernet300|100.64.0.22/31": {},
+    "Ethernet304": {},
+    "Ethernet304|100.64.0.24/31": {},
+    "Ethernet308": {},
+    "Ethernet308|100.64.0.26/31": {},
+    "Ethernet312": {},
+    "Ethernet312|100.64.0.28/31": {},
+    "Ethernet316": {},
+    "Ethernet316|100.64.0.30/31": {},
+    "Ethernet32": {},
+    "Ethernet320": {},
+    "Ethernet320|100.64.0.32/31": {},
+    "Ethernet324": {},
+    "Ethernet324|100.64.0.34/31": {},
+    "Ethernet328": {},
+    "Ethernet328|100.64.0.36/31": {},
+    "Ethernet32|10.0.0.16/31": {},
+    "Ethernet332": {},
+    "Ethernet332|100.64.0.38/31": {},
+    "Ethernet336": {},
+    "Ethernet336|100.64.0.40/31": {},
+    "Ethernet340": {},
+    "Ethernet340|100.64.0.42/31": {},
+    "Ethernet344": {},
+    "Ethernet344|100.64.0.44/31": {},
+    "Ethernet348": {},
+    "Ethernet348|100.64.0.46/31": {},
+    "Ethernet352": {},
+    "Ethernet352|100.64.0.48/31": {},
+    "Ethernet356": {},
+    "Ethernet356|100.64.0.50/31": {},
+    "Ethernet36": {},
+    "Ethernet360": {},
+    "Ethernet360|100.64.0.52/31": {},
+    "Ethernet364": {},
+    "Ethernet364|100.64.0.54/31": {},
+    "Ethernet368": {},
+    "Ethernet368|100.64.0.56/31": {},
+    "Ethernet36|10.0.0.18/31": {},
+    "Ethernet372": {},
+    "Ethernet372|100.64.0.58/31": {},
+    "Ethernet376": {},
+    "Ethernet376|100.64.0.60/31": {},
+    "Ethernet380": {},
+    "Ethernet380|100.64.0.62/31": {},
+    "Ethernet384": {},
+    "Ethernet384|100.64.0.64/31": {},
+    "Ethernet388": {},
+    "Ethernet388|100.64.0.66/31": {},
+    "Ethernet392": {},
+    "Ethernet392|100.64.0.68/31": {},
+    "Ethernet396": {},
+    "Ethernet396|100.64.0.70/31": {},
+    "Ethernet4": {},
+    "Ethernet40": {},
+    "Ethernet400": {},
+    "Ethernet400|100.64.0.72/31": {},
+    "Ethernet404": {},
+    "Ethernet404|100.64.0.74/31": {},
+    "Ethernet408": {},
+    "Ethernet408|100.64.0.76/31": {},
+    "Ethernet40|10.0.0.20/31": {},
+    "Ethernet412": {},
+    "Ethernet412|100.64.0.78/31": {},
+    "Ethernet416": {},
+    "Ethernet416|100.64.0.80/31": {},
+    "Ethernet420": {},
+    "Ethernet420|100.64.0.82/31": {},
+    "Ethernet424": {},
+    "Ethernet424|100.64.0.84/31": {},
+    "Ethernet428": {},
+    "Ethernet428|100.64.0.86/31": {},
+    "Ethernet432": {},
+    "Ethernet432|100.64.0.88/31": {},
+    "Ethernet436": {},
+    "Ethernet436|100.64.0.90/31": {},
+    "Ethernet44": {},
+    "Ethernet440": {},
+    "Ethernet440|100.64.0.92/31": {},
+    "Ethernet444": {},
+    "Ethernet444|100.64.0.94/31": {},
+    "Ethernet448": {},
+    "Ethernet448|100.64.0.96/31": {},
+    "Ethernet44|10.0.0.22/31": {},
+    "Ethernet452": {},
+    "Ethernet452|100.64.0.98/31": {},
+    "Ethernet456": {},
+    "Ethernet456|100.64.0.100/31": {},
+    "Ethernet460": {},
+    "Ethernet460|100.64.0.102/31": {},
+    "Ethernet464": {},
+    "Ethernet464|100.64.0.104/31": {},
+    "Ethernet468": {},
+    "Ethernet468|100.64.0.106/31": {},
+    "Ethernet472": {},
+    "Ethernet472|100.64.0.108/31": {},
+    "Ethernet476": {},
+    "Ethernet476|100.64.0.110/31": {},
+    "Ethernet48": {},
+    "Ethernet480": {},
+    "Ethernet480|100.64.0.112/31": {},
+    "Ethernet484": {},
+    "Ethernet484|100.64.0.114/31": {},
+    "Ethernet488": {},
+    "Ethernet488|100.64.0.116/31": {},
+    "Ethernet48|10.0.0.24/31": {},
+    "Ethernet492": {},
+    "Ethernet492|100.64.0.118/31": {},
+    "Ethernet496": {},
+    "Ethernet496|100.64.0.120/31": {},
+    "Ethernet4|10.0.0.2/31": {},
+    "Ethernet500": {},
+    "Ethernet500|100.64.0.122/31": {},
+    "Ethernet504": {},
+    "Ethernet504|100.64.0.124/31": {},
+    "Ethernet508": {},
+    "Ethernet508|100.64.0.126/31": {},
+    "Ethernet52": {},
+    "Ethernet52|10.0.0.26/31": {},
+    "Ethernet56": {},
+    "Ethernet56|10.0.0.28/31": {},
+    "Ethernet60": {},
+    "Ethernet60|10.0.0.30/31": {},
+    "Ethernet64": {},
+    "Ethernet64|10.0.0.32/31": {},
+    "Ethernet68": {},
+    "Ethernet68|10.0.0.34/31": {},
+    "Ethernet72": {},
+    "Ethernet72|10.0.0.36/31": {},
+    "Ethernet76": {},
+    "Ethernet76|10.0.0.38/31": {},
+    "Ethernet8": {},
+    "Ethernet80": {},
+    "Ethernet80|10.0.0.40/31": {},
+    "Ethernet84": {},
+    "Ethernet84|10.0.0.42/31": {},
+    "Ethernet88": {},
+    "Ethernet88|10.0.0.44/31": {},
+    "Ethernet8|10.0.0.4/31": {},
+    "Ethernet92": {},
+    "Ethernet92|10.0.0.46/31": {},
+    "Ethernet96": {},
+    "Ethernet96|10.0.0.48/31": {}
+  },
+  "LOOPBACK_INTERFACE": {
+    "Loopback0": {},
+    "Loopback0|10.255.0.1/32": {}
+  },
+  "PORT": {
+    "Ethernet0": {
+      "admin_status": "up",
+      "alias": "etp0",
+      "description": "rack00000-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "0,1,2,3",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet100": {
+      "admin_status": "up",
+      "alias": "etp25",
+      "description": "rack00006-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "100,101,102,103",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet104": {
+      "admin_status": "up",
+      "alias": "etp26",
+      "description": "rack00006-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "104,105,106,107",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet108": {
+      "admin_status": "up",
+      "alias": "etp27",
+      "description": "rack00006-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "108,109,110,111",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet112": {
+      "admin_status": "up",
+      "alias": "etp28",
+      "description": "rack00007-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "112,113,114,115",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet116": {
+      "admin_status": "up",
+      "alias": "etp29",
+      "description": "rack00007-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "116,117,118,119",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet12": {
+      "admin_status": "up",
+      "alias": "etp3",
+      "description": "rack00000-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "12,13,14,15",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet120": {
+      "admin_status": "up",
+      "alias": "etp30",
+      "description": "rack00007-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "120,121,122,123",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet124": {
+      "admin_status": "up",
+      "alias": "etp31",
+      "description": "rack00007-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "124,125,126,127",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet128": {
+      "admin_status": "up",
+      "alias": "etp32",
+      "description": "rack00008-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "128,129,130,131",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet132": {
+      "admin_status": "up",
+      "alias": "etp33",
+      "description": "rack00008-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "132,133,134,135",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet136": {
+      "admin_status": "up",
+      "alias": "etp34",
+      "description": "rack00008-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "136,137,138,139",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet140": {
+      "admin_status": "up",
+      "alias": "etp35",
+      "description": "rack00008-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "140,141,142,143",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet144": {
+      "admin_status": "up",
+      "alias": "etp36",
+      "description": "rack00009-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "144,145,146,147",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet148": {
+      "admin_status": "up",
+      "alias": "etp37",
+      "description": "rack00009-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "148,149,150,151",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet152": {
+      "admin_status": "up",
+      "alias": "etp38",
+      "description": "rack00009-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "152,153,154,155",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet156": {
+      "admin_status": "up",
+      "alias": "etp39",
+      "description": "rack00009-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "156,157,158,159",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet16": {
+      "admin_status": "up",
+      "alias": "etp4",
+      "description": "rack00001-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "16,17,18,19",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet160": {
+      "admin_status": "up",
+      "alias": "etp40",
+      "description": "rack00010-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "160,161,162,163",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet164": {
+      "admin_status": "up",
+      "alias": "etp41",
+      "description": "rack00010-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "164,165,166,167",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet168": {
+      "admin_status": "up",
+      "alias": "etp42",
+      "description": "rack00010-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "168,169,170,171",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet172": {
+      "admin_status": "up",
+      "alias": "etp43",
+      "description": "rack00010-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "172,173,174,175",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet176": {
+      "admin_status": "up",
+      "alias": "etp44",
+      "description": "rack00011-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "176,177,178,179",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet180": {
+      "admin_status": "up",
+      "alias": "etp45",
+      "description": "rack00011-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "180,181,182,183",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet184": {
+      "admin_status": "up",
+      "alias": "etp46",
+      "description": "rack00011-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "184,185,186,187",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet188": {
+      "admin_status": "up",
+      "alias": "etp47",
+      "description": "rack00011-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "188,189,190,191",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet192": {
+      "admin_status": "up",
+      "alias": "etp48",
+      "description": "rack00012-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "192,193,194,195",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet196": {
+      "admin_status": "up",
+      "alias": "etp49",
+      "description": "rack00012-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "196,197,198,199",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet20": {
+      "admin_status": "up",
+      "alias": "etp5",
+      "description": "rack00001-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "20,21,22,23",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet200": {
+      "admin_status": "up",
+      "alias": "etp50",
+      "description": "rack00012-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "200,201,202,203",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet204": {
+      "admin_status": "up",
+      "alias": "etp51",
+      "description": "rack00012-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "204,205,206,207",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet208": {
+      "admin_status": "up",
+      "alias": "etp52",
+      "description": "rack00013-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "208,209,210,211",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet212": {
+      "admin_status": "up",
+      "alias": "etp53",
+      "description": "rack00013-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "212,213,214,215",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet216": {
+      "admin_status": "up",
+      "alias": "etp54",
+      "description": "rack00013-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "216,217,218,219",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet220": {
+      "admin_status": "up",
+      "alias": "etp55",
+      "description": "rack00013-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "220,221,222,223",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet224": {
+      "admin_status": "up",
+      "alias": "etp56",
+      "description": "rack00014-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "224,225,226,227",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet228": {
+      "admin_status": "up",
+      "alias": "etp57",
+      "description": "rack00014-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "228,229,230,231",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet232": {
+      "admin_status": "up",
+      "alias": "etp58",
+      "description": "rack00014-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "232,233,234,235",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet236": {
+      "admin_status": "up",
+      "alias": "etp59",
+      "description": "rack00014-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "236,237,238,239",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet24": {
+      "admin_status": "up",
+      "alias": "etp6",
+      "description": "rack00001-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "24,25,26,27",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet240": {
+      "admin_status": "up",
+      "alias": "etp60",
+      "description": "rack00015-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "240,241,242,243",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet244": {
+      "admin_status": "up",
+      "alias": "etp61",
+      "description": "rack00015-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "244,245,246,247",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet248": {
+      "admin_status": "up",
+      "alias": "etp62",
+      "description": "rack00015-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "248,249,250,251",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet252": {
+      "admin_status": "up",
+      "alias": "etp63",
+      "description": "rack00015-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "252,253,254,255",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet256": {
+      "admin_status": "up",
+      "alias": "etp64",
+      "description": "to p0-sp000-sw000",
+      "fec": "rs",
+      "lanes": "256,257,258,259",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet260": {
+      "admin_status": "up",
+      "alias": "etp65",
+      "description": "to p0-sp000-sw001",
+      "fec": "rs",
+      "lanes": "260,261,262,263",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet264": {
+      "admin_status": "up",
+      "alias": "etp66",
+      "description": "to p0-sp000-sw002",
+      "fec": "rs",
+      "lanes": "264,265,266,267",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet268": {
+      "admin_status": "up",
+      "alias": "etp67",
+      "description": "to p0-sp000-sw003",
+      "fec": "rs",
+      "lanes": "268,269,270,271",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet272": {
+      "admin_status": "up",
+      "alias": "etp68",
+      "description": "to p0-sp000-sw004",
+      "fec": "rs",
+      "lanes": "272,273,274,275",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet276": {
+      "admin_status": "up",
+      "alias": "etp69",
+      "description": "to p0-sp000-sw005",
+      "fec": "rs",
+      "lanes": "276,277,278,279",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet28": {
+      "admin_status": "up",
+      "alias": "etp7",
+      "description": "rack00001-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "28,29,30,31",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet280": {
+      "admin_status": "up",
+      "alias": "etp70",
+      "description": "to p0-sp000-sw006",
+      "fec": "rs",
+      "lanes": "280,281,282,283",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet284": {
+      "admin_status": "up",
+      "alias": "etp71",
+      "description": "to p0-sp000-sw007",
+      "fec": "rs",
+      "lanes": "284,285,286,287",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet288": {
+      "admin_status": "up",
+      "alias": "etp72",
+      "description": "to p0-sp000-sw008",
+      "fec": "rs",
+      "lanes": "288,289,290,291",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet292": {
+      "admin_status": "up",
+      "alias": "etp73",
+      "description": "to p0-sp000-sw009",
+      "fec": "rs",
+      "lanes": "292,293,294,295",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet296": {
+      "admin_status": "up",
+      "alias": "etp74",
+      "description": "to p0-sp000-sw010",
+      "fec": "rs",
+      "lanes": "296,297,298,299",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet300": {
+      "admin_status": "up",
+      "alias": "etp75",
+      "description": "to p0-sp000-sw011",
+      "fec": "rs",
+      "lanes": "300,301,302,303",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet304": {
+      "admin_status": "up",
+      "alias": "etp76",
+      "description": "to p0-sp000-sw012",
+      "fec": "rs",
+      "lanes": "304,305,306,307",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet308": {
+      "admin_status": "up",
+      "alias": "etp77",
+      "description": "to p0-sp000-sw013",
+      "fec": "rs",
+      "lanes": "308,309,310,311",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet312": {
+      "admin_status": "up",
+      "alias": "etp78",
+      "description": "to p0-sp000-sw014",
+      "fec": "rs",
+      "lanes": "312,313,314,315",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet316": {
+      "admin_status": "up",
+      "alias": "etp79",
+      "description": "to p0-sp000-sw015",
+      "fec": "rs",
+      "lanes": "316,317,318,319",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet32": {
+      "admin_status": "up",
+      "alias": "etp8",
+      "description": "rack00002-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "32,33,34,35",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet320": {
+      "admin_status": "up",
+      "alias": "etp80",
+      "description": "to p0-sp000-sw016",
+      "fec": "rs",
+      "lanes": "320,321,322,323",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet324": {
+      "admin_status": "up",
+      "alias": "etp81",
+      "description": "to p0-sp000-sw017",
+      "fec": "rs",
+      "lanes": "324,325,326,327",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet328": {
+      "admin_status": "up",
+      "alias": "etp82",
+      "description": "to p0-sp000-sw018",
+      "fec": "rs",
+      "lanes": "328,329,330,331",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet332": {
+      "admin_status": "up",
+      "alias": "etp83",
+      "description": "to p0-sp000-sw019",
+      "fec": "rs",
+      "lanes": "332,333,334,335",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet336": {
+      "admin_status": "up",
+      "alias": "etp84",
+      "description": "to p0-sp000-sw020",
+      "fec": "rs",
+      "lanes": "336,337,338,339",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet340": {
+      "admin_status": "up",
+      "alias": "etp85",
+      "description": "to p0-sp000-sw021",
+      "fec": "rs",
+      "lanes": "340,341,342,343",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet344": {
+      "admin_status": "up",
+      "alias": "etp86",
+      "description": "to p0-sp000-sw022",
+      "fec": "rs",
+      "lanes": "344,345,346,347",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet348": {
+      "admin_status": "up",
+      "alias": "etp87",
+      "description": "to p0-sp000-sw023",
+      "fec": "rs",
+      "lanes": "348,349,350,351",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet352": {
+      "admin_status": "up",
+      "alias": "etp88",
+      "description": "to p0-sp000-sw024",
+      "fec": "rs",
+      "lanes": "352,353,354,355",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet356": {
+      "admin_status": "up",
+      "alias": "etp89",
+      "description": "to p0-sp000-sw025",
+      "fec": "rs",
+      "lanes": "356,357,358,359",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet36": {
+      "admin_status": "up",
+      "alias": "etp9",
+      "description": "rack00002-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "36,37,38,39",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet360": {
+      "admin_status": "up",
+      "alias": "etp90",
+      "description": "to p0-sp000-sw026",
+      "fec": "rs",
+      "lanes": "360,361,362,363",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet364": {
+      "admin_status": "up",
+      "alias": "etp91",
+      "description": "to p0-sp000-sw027",
+      "fec": "rs",
+      "lanes": "364,365,366,367",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet368": {
+      "admin_status": "up",
+      "alias": "etp92",
+      "description": "to p0-sp000-sw028",
+      "fec": "rs",
+      "lanes": "368,369,370,371",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet372": {
+      "admin_status": "up",
+      "alias": "etp93",
+      "description": "to p0-sp000-sw029",
+      "fec": "rs",
+      "lanes": "372,373,374,375",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet376": {
+      "admin_status": "up",
+      "alias": "etp94",
+      "description": "to p0-sp000-sw030",
+      "fec": "rs",
+      "lanes": "376,377,378,379",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet380": {
+      "admin_status": "up",
+      "alias": "etp95",
+      "description": "to p0-sp000-sw031",
+      "fec": "rs",
+      "lanes": "380,381,382,383",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet384": {
+      "admin_status": "up",
+      "alias": "etp96",
+      "description": "to p0-sp000-sw032",
+      "fec": "rs",
+      "lanes": "384,385,386,387",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet388": {
+      "admin_status": "up",
+      "alias": "etp97",
+      "description": "to p0-sp000-sw033",
+      "fec": "rs",
+      "lanes": "388,389,390,391",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet392": {
+      "admin_status": "up",
+      "alias": "etp98",
+      "description": "to p0-sp000-sw034",
+      "fec": "rs",
+      "lanes": "392,393,394,395",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet396": {
+      "admin_status": "up",
+      "alias": "etp99",
+      "description": "to p0-sp000-sw035",
+      "fec": "rs",
+      "lanes": "396,397,398,399",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet4": {
+      "admin_status": "up",
+      "alias": "etp1",
+      "description": "rack00000-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "4,5,6,7",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet40": {
+      "admin_status": "up",
+      "alias": "etp10",
+      "description": "rack00002-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "40,41,42,43",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet400": {
+      "admin_status": "up",
+      "alias": "etp100",
+      "description": "to p0-sp000-sw036",
+      "fec": "rs",
+      "lanes": "400,401,402,403",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet404": {
+      "admin_status": "up",
+      "alias": "etp101",
+      "description": "to p0-sp000-sw037",
+      "fec": "rs",
+      "lanes": "404,405,406,407",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet408": {
+      "admin_status": "up",
+      "alias": "etp102",
+      "description": "to p0-sp000-sw038",
+      "fec": "rs",
+      "lanes": "408,409,410,411",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet412": {
+      "admin_status": "up",
+      "alias": "etp103",
+      "description": "to p0-sp000-sw039",
+      "fec": "rs",
+      "lanes": "412,413,414,415",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet416": {
+      "admin_status": "up",
+      "alias": "etp104",
+      "description": "to p0-sp000-sw040",
+      "fec": "rs",
+      "lanes": "416,417,418,419",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet420": {
+      "admin_status": "up",
+      "alias": "etp105",
+      "description": "to p0-sp000-sw041",
+      "fec": "rs",
+      "lanes": "420,421,422,423",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet424": {
+      "admin_status": "up",
+      "alias": "etp106",
+      "description": "to p0-sp000-sw042",
+      "fec": "rs",
+      "lanes": "424,425,426,427",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet428": {
+      "admin_status": "up",
+      "alias": "etp107",
+      "description": "to p0-sp000-sw043",
+      "fec": "rs",
+      "lanes": "428,429,430,431",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet432": {
+      "admin_status": "up",
+      "alias": "etp108",
+      "description": "to p0-sp000-sw044",
+      "fec": "rs",
+      "lanes": "432,433,434,435",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet436": {
+      "admin_status": "up",
+      "alias": "etp109",
+      "description": "to p0-sp000-sw045",
+      "fec": "rs",
+      "lanes": "436,437,438,439",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet44": {
+      "admin_status": "up",
+      "alias": "etp11",
+      "description": "rack00002-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "44,45,46,47",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet440": {
+      "admin_status": "up",
+      "alias": "etp110",
+      "description": "to p0-sp000-sw046",
+      "fec": "rs",
+      "lanes": "440,441,442,443",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet444": {
+      "admin_status": "up",
+      "alias": "etp111",
+      "description": "to p0-sp000-sw047",
+      "fec": "rs",
+      "lanes": "444,445,446,447",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet448": {
+      "admin_status": "up",
+      "alias": "etp112",
+      "description": "to p0-sp000-sw048",
+      "fec": "rs",
+      "lanes": "448,449,450,451",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet452": {
+      "admin_status": "up",
+      "alias": "etp113",
+      "description": "to p0-sp000-sw049",
+      "fec": "rs",
+      "lanes": "452,453,454,455",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet456": {
+      "admin_status": "up",
+      "alias": "etp114",
+      "description": "to p0-sp000-sw050",
+      "fec": "rs",
+      "lanes": "456,457,458,459",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet460": {
+      "admin_status": "up",
+      "alias": "etp115",
+      "description": "to p0-sp000-sw051",
+      "fec": "rs",
+      "lanes": "460,461,462,463",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet464": {
+      "admin_status": "up",
+      "alias": "etp116",
+      "description": "to p0-sp000-sw052",
+      "fec": "rs",
+      "lanes": "464,465,466,467",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet468": {
+      "admin_status": "up",
+      "alias": "etp117",
+      "description": "to p0-sp000-sw053",
+      "fec": "rs",
+      "lanes": "468,469,470,471",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet472": {
+      "admin_status": "up",
+      "alias": "etp118",
+      "description": "to p0-sp000-sw054",
+      "fec": "rs",
+      "lanes": "472,473,474,475",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet476": {
+      "admin_status": "up",
+      "alias": "etp119",
+      "description": "to p0-sp000-sw055",
+      "fec": "rs",
+      "lanes": "476,477,478,479",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet48": {
+      "admin_status": "up",
+      "alias": "etp12",
+      "description": "rack00003-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "48,49,50,51",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet480": {
+      "admin_status": "up",
+      "alias": "etp120",
+      "description": "to p0-sp000-sw056",
+      "fec": "rs",
+      "lanes": "480,481,482,483",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet484": {
+      "admin_status": "up",
+      "alias": "etp121",
+      "description": "to p0-sp000-sw057",
+      "fec": "rs",
+      "lanes": "484,485,486,487",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet488": {
+      "admin_status": "up",
+      "alias": "etp122",
+      "description": "to p0-sp000-sw058",
+      "fec": "rs",
+      "lanes": "488,489,490,491",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet492": {
+      "admin_status": "up",
+      "alias": "etp123",
+      "description": "to p0-sp000-sw059",
+      "fec": "rs",
+      "lanes": "492,493,494,495",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet496": {
+      "admin_status": "up",
+      "alias": "etp124",
+      "description": "to p0-sp000-sw060",
+      "fec": "rs",
+      "lanes": "496,497,498,499",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet500": {
+      "admin_status": "up",
+      "alias": "etp125",
+      "description": "to p0-sp000-sw061",
+      "fec": "rs",
+      "lanes": "500,501,502,503",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet504": {
+      "admin_status": "up",
+      "alias": "etp126",
+      "description": "to p0-sp000-sw062",
+      "fec": "rs",
+      "lanes": "504,505,506,507",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet508": {
+      "admin_status": "up",
+      "alias": "etp127",
+      "description": "to p0-sp000-sw063",
+      "fec": "rs",
+      "lanes": "508,509,510,511",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet52": {
+      "admin_status": "up",
+      "alias": "etp13",
+      "description": "rack00003-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "52,53,54,55",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet56": {
+      "admin_status": "up",
+      "alias": "etp14",
+      "description": "rack00003-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "56,57,58,59",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet60": {
+      "admin_status": "up",
+      "alias": "etp15",
+      "description": "rack00003-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "60,61,62,63",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet64": {
+      "admin_status": "up",
+      "alias": "etp16",
+      "description": "rack00004-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "64,65,66,67",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet68": {
+      "admin_status": "up",
+      "alias": "etp17",
+      "description": "rack00004-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "68,69,70,71",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet72": {
+      "admin_status": "up",
+      "alias": "etp18",
+      "description": "rack00004-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "72,73,74,75",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet76": {
+      "admin_status": "up",
+      "alias": "etp19",
+      "description": "rack00004-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "76,77,78,79",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet8": {
+      "admin_status": "up",
+      "alias": "etp2",
+      "description": "rack00000-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "8,9,10,11",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet80": {
+      "admin_status": "up",
+      "alias": "etp20",
+      "description": "rack00005-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "80,81,82,83",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet84": {
+      "admin_status": "up",
+      "alias": "etp21",
+      "description": "rack00005-n01-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "84,85,86,87",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet88": {
+      "admin_status": "up",
+      "alias": "etp22",
+      "description": "rack00005-n02-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "88,89,90,91",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet92": {
+      "admin_status": "up",
+      "alias": "etp23",
+      "description": "rack00005-n03-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "92,93,94,95",
+      "mtu": "9216",
+      "speed": "400000"
+    },
+    "Ethernet96": {
+      "admin_status": "up",
+      "alias": "etp24",
+      "description": "rack00006-n00-gpu0 plane 0",
+      "fec": "rs",
+      "lanes": "96,97,98,99",
+      "mtu": "9216",
+      "speed": "400000"
+    }
+  },
+  "PORT_QOS_MAP": {
+    "Ethernet0": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet100": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet104": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet108": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet112": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet116": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet12": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet120": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet124": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet128": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet132": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet136": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet140": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet144": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet148": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet152": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet156": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet16": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet160": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet164": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet168": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet172": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet176": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet180": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet184": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet188": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet192": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet196": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet20": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet200": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet204": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet208": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet212": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet216": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet220": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet224": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet228": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet232": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet236": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet24": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet240": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet244": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet248": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet252": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet256": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet260": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet264": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet268": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet272": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet276": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet28": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet280": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet284": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet288": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet292": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet296": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet300": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet304": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet308": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet312": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet316": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet32": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet320": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet324": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet328": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet332": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet336": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet340": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet344": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet348": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet352": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet356": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet36": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet360": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet364": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet368": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet372": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet376": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet380": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet384": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet388": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet392": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet396": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet4": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet40": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet400": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet404": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet408": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet412": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet416": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet420": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet424": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet428": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet432": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet436": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet44": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet440": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet444": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet448": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet452": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet456": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet460": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet464": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet468": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet472": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet476": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet48": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet480": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet484": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet488": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet492": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet496": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet500": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet504": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet508": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet52": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet56": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet60": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet64": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet68": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet72": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet76": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet8": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet80": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet84": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet88": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet92": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    },
+    "Ethernet96": {
+      "dscp_to_tc_map": "AZURE",
+      "pfc_enable": "3",
+      "pfcwd_sw_enable": "3"
+    }
+  },
+  "QUEUE": {
+    "Ethernet0|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet100|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet104|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet108|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet112|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet116|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet120|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet124|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet128|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet12|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet132|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet136|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet140|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet144|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet148|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet152|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet156|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet160|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet164|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet168|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet16|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet172|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet176|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet180|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet184|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet188|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet192|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet196|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet200|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet204|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet208|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet20|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet212|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet216|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet220|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet224|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet228|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet232|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet236|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet240|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet244|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet248|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet24|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet252|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet256|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet260|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet264|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet268|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet272|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet276|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet280|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet284|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet288|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet28|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet292|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet296|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet300|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet304|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet308|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet312|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet316|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet320|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet324|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet328|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet32|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet332|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet336|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet340|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet344|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet348|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet352|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet356|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet360|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet364|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet368|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet36|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet372|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet376|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet380|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet384|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet388|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet392|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet396|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet400|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet404|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet408|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet40|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet412|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet416|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet420|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet424|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet428|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet432|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet436|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet440|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet444|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet448|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet44|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet452|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet456|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet460|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet464|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet468|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet472|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet476|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet480|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet484|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet488|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet48|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet492|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet496|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet4|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet500|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet504|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet508|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet52|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet56|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet60|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet64|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet68|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet72|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet76|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet80|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet84|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet88|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet8|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet92|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    },
+    "Ethernet96|3": {
+      "scheduler": "scheduler.0",
+      "wred_profile": "AZURE_LOSSLESS"
+    }
+  },
+  "WRED_PROFILE": {
+    "AZURE_LOSSLESS": {
+      "ecn": "ecn_all",
+      "green_drop_probability": "1",
+      "green_max_threshold": "2048000",
+      "green_min_threshold": "51200",
+      "wred_green_enable": "true"
+    }
+  }
+}
+
+# ---- /etc/sonic/frr/frr.conf ----
+! p0-sp000-lf000: leaf, plane 0, AS 4200000000
+! Generated by dcdesigner. Reference template: validate in a lab before production.
+!
+hostname p0-sp000-lf000
+!
+router bgp 4200000000
+ bgp router-id 10.255.0.1
+ bgp bestpath as-path multipath-relax
+ no bgp ebgp-requires-policy
+ neighbor FABRIC peer-group
+ neighbor FABRIC bfd
+ neighbor 100.64.0.1 remote-as 4201000000
+ neighbor 100.64.0.1 peer-group FABRIC
+ neighbor 100.64.0.1 description p0-sp000-sw000
+ neighbor 100.64.0.3 remote-as 4201000000
+ neighbor 100.64.0.3 peer-group FABRIC
+ neighbor 100.64.0.3 description p0-sp000-sw001
+ neighbor 100.64.0.5 remote-as 4201000000
+ neighbor 100.64.0.5 peer-group FABRIC
+ neighbor 100.64.0.5 description p0-sp000-sw002
+ neighbor 100.64.0.7 remote-as 4201000000
+ neighbor 100.64.0.7 peer-group FABRIC
+ neighbor 100.64.0.7 description p0-sp000-sw003
+ neighbor 100.64.0.9 remote-as 4201000000
+ neighbor 100.64.0.9 peer-group FABRIC
+ neighbor 100.64.0.9 description p0-sp000-sw004
+ neighbor 100.64.0.11 remote-as 4201000000
+ neighbor 100.64.0.11 peer-group FABRIC
+ neighbor 100.64.0.11 description p0-sp000-sw005
+ neighbor 100.64.0.13 remote-as 4201000000
+ neighbor 100.64.0.13 peer-group FABRIC
+ neighbor 100.64.0.13 description p0-sp000-sw006
+ neighbor 100.64.0.15 remote-as 4201000000
+ neighbor 100.64.0.15 peer-group FABRIC
+ neighbor 100.64.0.15 description p0-sp000-sw007
+ neighbor 100.64.0.17 remote-as 4201000000
+ neighbor 100.64.0.17 peer-group FABRIC
+ neighbor 100.64.0.17 description p0-sp000-sw008
+ neighbor 100.64.0.19 remote-as 4201000000
+ neighbor 100.64.0.19 peer-group FABRIC
+ neighbor 100.64.0.19 description p0-sp000-sw009
+ neighbor 100.64.0.21 remote-as 4201000000
+ neighbor 100.64.0.21 peer-group FABRIC
+ neighbor 100.64.0.21 description p0-sp000-sw010
+ neighbor 100.64.0.23 remote-as 4201000000
+ neighbor 100.64.0.23 peer-group FABRIC
+ neighbor 100.64.0.23 description p0-sp000-sw011
+ neighbor 100.64.0.25 remote-as 4201000000
+ neighbor 100.64.0.25 peer-group FABRIC
+ neighbor 100.64.0.25 description p0-sp000-sw012
+ neighbor 100.64.0.27 remote-as 4201000000
+ neighbor 100.64.0.27 peer-group FABRIC
+ neighbor 100.64.0.27 description p0-sp000-sw013
+ neighbor 100.64.0.29 remote-as 4201000000
+ neighbor 100.64.0.29 peer-group FABRIC
+ neighbor 100.64.0.29 description p0-sp000-sw014
+ neighbor 100.64.0.31 remote-as 4201000000
+ neighbor 100.64.0.31 peer-group FABRIC
+ neighbor 100.64.0.31 description p0-sp000-sw015
+ neighbor 100.64.0.33 remote-as 4201000000
+ neighbor 100.64.0.33 peer-group FABRIC
+ neighbor 100.64.0.33 description p0-sp000-sw016
+ neighbor 100.64.0.35 remote-as 4201000000
+ neighbor 100.64.0.35 peer-group FABRIC
+ neighbor 100.64.0.35 description p0-sp000-sw017
+ neighbor 100.64.0.37 remote-as 4201000000
+ neighbor 100.64.0.37 peer-group FABRIC
+ neighbor 100.64.0.37 description p0-sp000-sw018
+ neighbor 100.64.0.39 remote-as 4201000000
+ neighbor 100.64.0.39 peer-group FABRIC
+ neighbor 100.64.0.39 description p0-sp000-sw019
+ neighbor 100.64.0.41 remote-as 4201000000
+ neighbor 100.64.0.41 peer-group FABRIC
+ neighbor 100.64.0.41 description p0-sp000-sw020
+ neighbor 100.64.0.43 remote-as 4201000000
+ neighbor 100.64.0.43 peer-group FABRIC
+ neighbor 100.64.0.43 description p0-sp000-sw021
+ neighbor 100.64.0.45 remote-as 4201000000
+ neighbor 100.64.0.45 peer-group FABRIC
+ neighbor 100.64.0.45 description p0-sp000-sw022
+ neighbor 100.64.0.47 remote-as 4201000000
+ neighbor 100.64.0.47 peer-group FABRIC
+ neighbor 100.64.0.47 description p0-sp000-sw023
+ neighbor 100.64.0.49 remote-as 4201000000
+ neighbor 100.64.0.49 peer-group FABRIC
+ neighbor 100.64.0.49 description p0-sp000-sw024
+ neighbor 100.64.0.51 remote-as 4201000000
+ neighbor 100.64.0.51 peer-group FABRIC
+ neighbor 100.64.0.51 description p0-sp000-sw025
+ neighbor 100.64.0.53 remote-as 4201000000
+ neighbor 100.64.0.53 peer-group FABRIC
+ neighbor 100.64.0.53 description p0-sp000-sw026
+ neighbor 100.64.0.55 remote-as 4201000000
+ neighbor 100.64.0.55 peer-group FABRIC
+ neighbor 100.64.0.55 description p0-sp000-sw027
+ neighbor 100.64.0.57 remote-as 4201000000
+ neighbor 100.64.0.57 peer-group FABRIC
+ neighbor 100.64.0.57 description p0-sp000-sw028
+ neighbor 100.64.0.59 remote-as 4201000000
+ neighbor 100.64.0.59 peer-group FABRIC
+ neighbor 100.64.0.59 description p0-sp000-sw029
+ neighbor 100.64.0.61 remote-as 4201000000
+ neighbor 100.64.0.61 peer-group FABRIC
+ neighbor 100.64.0.61 description p0-sp000-sw030
+ neighbor 100.64.0.63 remote-as 4201000000
+ neighbor 100.64.0.63 peer-group FABRIC
+ neighbor 100.64.0.63 description p0-sp000-sw031
+ neighbor 100.64.0.65 remote-as 4201000000
+ neighbor 100.64.0.65 peer-group FABRIC
+ neighbor 100.64.0.65 description p0-sp000-sw032
+ neighbor 100.64.0.67 remote-as 4201000000
+ neighbor 100.64.0.67 peer-group FABRIC
+ neighbor 100.64.0.67 description p0-sp000-sw033
+ neighbor 100.64.0.69 remote-as 4201000000
+ neighbor 100.64.0.69 peer-group FABRIC
+ neighbor 100.64.0.69 description p0-sp000-sw034
+ neighbor 100.64.0.71 remote-as 4201000000
+ neighbor 100.64.0.71 peer-group FABRIC
+ neighbor 100.64.0.71 description p0-sp000-sw035
+ neighbor 100.64.0.73 remote-as 4201000000
+ neighbor 100.64.0.73 peer-group FABRIC
+ neighbor 100.64.0.73 description p0-sp000-sw036
+ neighbor 100.64.0.75 remote-as 4201000000
+ neighbor 100.64.0.75 peer-group FABRIC
+ neighbor 100.64.0.75 description p0-sp000-sw037
+ neighbor 100.64.0.77 remote-as 4201000000
+ neighbor 100.64.0.77 peer-group FABRIC
+ neighbor 100.64.0.77 description p0-sp000-sw038
+ neighbor 100.64.0.79 remote-as 4201000000
+ neighbor 100.64.0.79 peer-group FABRIC
+ neighbor 100.64.0.79 description p0-sp000-sw039
+ neighbor 100.64.0.81 remote-as 4201000000
+ neighbor 100.64.0.81 peer-group FABRIC
+ neighbor 100.64.0.81 description p0-sp000-sw040
+ neighbor 100.64.0.83 remote-as 4201000000
+ neighbor 100.64.0.83 peer-group FABRIC
+ neighbor 100.64.0.83 description p0-sp000-sw041
+ neighbor 100.64.0.85 remote-as 4201000000
+ neighbor 100.64.0.85 peer-group FABRIC
+ neighbor 100.64.0.85 description p0-sp000-sw042
+ neighbor 100.64.0.87 remote-as 4201000000
+ neighbor 100.64.0.87 peer-group FABRIC
+ neighbor 100.64.0.87 description p0-sp000-sw043
+ neighbor 100.64.0.89 remote-as 4201000000
+ neighbor 100.64.0.89 peer-group FABRIC
+ neighbor 100.64.0.89 description p0-sp000-sw044
+ neighbor 100.64.0.91 remote-as 4201000000
+ neighbor 100.64.0.91 peer-group FABRIC
+ neighbor 100.64.0.91 description p0-sp000-sw045
+ neighbor 100.64.0.93 remote-as 4201000000
+ neighbor 100.64.0.93 peer-group FABRIC
+ neighbor 100.64.0.93 description p0-sp000-sw046
+ neighbor 100.64.0.95 remote-as 4201000000
+ neighbor 100.64.0.95 peer-group FABRIC
+ neighbor 100.64.0.95 description p0-sp000-sw047
+ neighbor 100.64.0.97 remote-as 4201000000
+ neighbor 100.64.0.97 peer-group FABRIC
+ neighbor 100.64.0.97 description p0-sp000-sw048
+ neighbor 100.64.0.99 remote-as 4201000000
+ neighbor 100.64.0.99 peer-group FABRIC
+ neighbor 100.64.0.99 description p0-sp000-sw049
+ neighbor 100.64.0.101 remote-as 4201000000
+ neighbor 100.64.0.101 peer-group FABRIC
+ neighbor 100.64.0.101 description p0-sp000-sw050
+ neighbor 100.64.0.103 remote-as 4201000000
+ neighbor 100.64.0.103 peer-group FABRIC
+ neighbor 100.64.0.103 description p0-sp000-sw051
+ neighbor 100.64.0.105 remote-as 4201000000
+ neighbor 100.64.0.105 peer-group FABRIC
+ neighbor 100.64.0.105 description p0-sp000-sw052
+ neighbor 100.64.0.107 remote-as 4201000000
+ neighbor 100.64.0.107 peer-group FABRIC
+ neighbor 100.64.0.107 description p0-sp000-sw053
+ neighbor 100.64.0.109 remote-as 4201000000
+ neighbor 100.64.0.109 peer-group FABRIC
+ neighbor 100.64.0.109 description p0-sp000-sw054
+ neighbor 100.64.0.111 remote-as 4201000000
+ neighbor 100.64.0.111 peer-group FABRIC
+ neighbor 100.64.0.111 description p0-sp000-sw055
+ neighbor 100.64.0.113 remote-as 4201000000
+ neighbor 100.64.0.113 peer-group FABRIC
+ neighbor 100.64.0.113 description p0-sp000-sw056
+ neighbor 100.64.0.115 remote-as 4201000000
+ neighbor 100.64.0.115 peer-group FABRIC
+ neighbor 100.64.0.115 description p0-sp000-sw057
+ neighbor 100.64.0.117 remote-as 4201000000
+ neighbor 100.64.0.117 peer-group FABRIC
+ neighbor 100.64.0.117 description p0-sp000-sw058
+ neighbor 100.64.0.119 remote-as 4201000000
+ neighbor 100.64.0.119 peer-group FABRIC
+ neighbor 100.64.0.119 description p0-sp000-sw059
+ neighbor 100.64.0.121 remote-as 4201000000
+ neighbor 100.64.0.121 peer-group FABRIC
+ neighbor 100.64.0.121 description p0-sp000-sw060
+ neighbor 100.64.0.123 remote-as 4201000000
+ neighbor 100.64.0.123 peer-group FABRIC
+ neighbor 100.64.0.123 description p0-sp000-sw061
+ neighbor 100.64.0.125 remote-as 4201000000
+ neighbor 100.64.0.125 peer-group FABRIC
+ neighbor 100.64.0.125 description p0-sp000-sw062
+ neighbor 100.64.0.127 remote-as 4201000000
+ neighbor 100.64.0.127 peer-group FABRIC
+ neighbor 100.64.0.127 description p0-sp000-sw063
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map LOCAL
+  maximum-paths 64
+ exit-address-family
+!
+route-map LOCAL permit 10
+!

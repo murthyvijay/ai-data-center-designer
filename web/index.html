@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Silicon-to-Data-Hall Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a tier ladder across the top drives one tier panel at a time — drawing left, figures right, BOM below. */
+:root {
+  --bg: #f3f5f6;
+  --panel: #ffffff;
+  --ink: #17222b;
+  --muted: #5b6b77;
+  --line: #d5dde2;
+  --soft: #e8edf0;
+  --accent: #b5652a;      /* copper */
+  --accent-ink: #ffffff;
+  --fiber: #1f7f8c;       /* optics */
+  --m-dac: #c98a4b;
+  --m-aec: #9c5a2a;
+  --m-lpo: #2aa1a8;
+  --m-dr: #2b7bb9;
+  --m-fr: #5a55b0;
+  --k-node: #3d6d8c;
+  --k-switch: #b5652a;
+  --k-power: #8a9aa5;
+  --k-mgmt: #6c7e8a;
+  --ok: #2f7d4f;
+  --warn: #a8761b;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161b; --panel: #151f26; --ink: #e3eaee; --muted: #93a4b0; --line: #2a3943; --soft: #1c2831;
+    --accent: #df8a4c; --accent-ink: #1a1007; --fiber: #45b3be;
+    --m-dac: #d9a066; --m-aec: #c77a3f; --m-lpo: #46c0c6; --m-dr: #5aa2dc; --m-fr: #8e89dc;
+    --k-node: #5d93b6; --k-switch: #df8a4c; --k-power: #6f808b; --k-mgmt: #8596a1;
+    --ok: #5cbf86; --warn: #d9a441;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161b; --panel: #151f26; --ink: #e3eaee; --muted: #93a4b0; --line: #2a3943; --soft: #1c2831;
+  --accent: #df8a4c; --accent-ink: #1a1007; --fiber: #45b3be;
+  --m-dac: #d9a066; --m-aec: #c77a3f; --m-lpo: #46c0c6; --m-dr: #5aa2dc; --m-fr: #8e89dc;
+  --k-node: #5d93b6; --k-switch: #df8a4c; --k-power: #6f808b; --k-mgmt: #8596a1;
+  --ok: #5cbf86; --warn: #d9a441;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.5 var(--font-body); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: 16px; padding-block: 18px 48px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: .01em; }
+h1 { font-size: 1.9rem; font-weight: 700; }
+h2 { font-size: 1.45rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+.eyebrow { font: 500 .72rem/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+td.n, th.n { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+code, pre, .mono { font-family: var(--font-mono); font-size: .85em; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between; }
+header.top p { margin: 4px 0 0; max-width: 70ch; color: var(--muted); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.seg button { border: 0; background: none; padding: 7px 14px; border-right: 1px solid var(--line); }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+.ladder { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.ladder button { text-align: left; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 8px 10px; display: grid; gap: 2px; position: relative; min-width: 0; }
+.ladder button .t { font: 600 1rem/1.15 var(--font-display); }
+.ladder button .v { font: .78rem/1.2 var(--font-mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ladder button[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px 18px; border-bottom: 1px solid var(--line); }
+.tabs button { border: 0; background: none; padding: 6px 0; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+@media (max-width: 760px) { .ladder { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-width: 0; }
+.tier-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--soft); border-radius: 999px; padding: 3px 11px; font-size: .85rem; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.grid2 { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.diagram { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.diagram svg { display: block; width: 100%; height: auto; min-width: 520px; }
+.diagram svg text { fill: var(--ink); font-family: var(--font-mono); }
+.diagram svg .lbl { fill: var(--muted); }
+.kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.kpi { background: var(--panel); padding: 9px 11px; display: grid; gap: 1px; min-width: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.kpi .k { font-size: .76rem; color: var(--muted); }
+.kpi .v { font: 600 1.15rem/1.2 var(--font-display); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); margin-top: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.stack { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+th, td { padding: 6px 8px; border-bottom: 1px solid var(--soft); vertical-align: top; text-align: left; }
+th { font: 500 .72rem/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--line); }
+tfoot td { font-weight: 600; border-top: 1px solid var(--line); border-bottom: 0; }
+td.note { color: var(--muted); font-size: .8rem; min-width: 220px; }
+.linkish { border: 0; background: none; padding: 0; color: var(--fiber); text-decoration: underline; text-underline-offset: 2px; text-align: left; }
+.tag { display: inline-block; font: 500 .68rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .05em; padding: 3px 6px; border-radius: 4px; background: var(--soft); color: var(--muted); margin-right: 6px; vertical-align: 1px; }
+.tag.asm { background: var(--fiber); color: var(--panel); }
+.bar { height: 6px; background: var(--soft); border-radius: 3px; overflow: hidden; min-width: 80px; }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .78rem; border: 1px solid currentColor; }
+.pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); }
+pre.cfg { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 12px; max-height: 460px; overflow: auto; margin: 0; white-space: pre; }
+ul.notes { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 95ch; }
+.prose { max-width: 80ch; }
+.prose p { margin: 0 0 10px; }
+a { color: var(--fiber); }
+.callout { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--soft); border-radius: 0 6px 6px 0; }
+@media (prefers-reduced-motion: no-preference) { .panel { transition: border-color .15s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Silicon-to-Data-Hall compiler</div>
+      <h1 id="title">AI data center designer</h1>
+      <p id="desc"></p>
+    </div>
+    <div class="seg" id="designs" role="group" aria-label="Design"></div>
+  </header>
+
+  <div class="tabs" role="tablist" id="tabs">
+    <button role="tab" data-tab="tiers" aria-selected="true">Tier breakdown</button>
+    <button role="tab" data-tab="fabric">Fabric, RoCE and configs</button>
+    <button role="tab" data-tab="compare">Compare A vs B</button>
+    <button role="tab" data-tab="notes">Design notes and sources</button>
+  </div>
+
+  <section id="view-tiers" class="stack">
+    <nav class="ladder" id="ladder" aria-label="Tiers"></nav>
+    <div class="panel stack" id="tier"></div>
+  </section>
+  <section id="view-fabric" class="stack" hidden></section>
+  <section id="view-compare" class="stack" hidden></section>
+  <section id="view-notes" class="stack" hidden></section>
+</div>
+<script src="designs.js"></script>
+<script>
+(() => {
+const D = window.DESIGNS || {};
+const NAMES = Object.keys(D).sort();
+const MEDIA = { dac: "DAC copper", aec: "AEC copper", lpo: "LPO optics", dr: "DR retimed optics", fr: "FR4 retimed optics" };
+const SHORT = { "arch-a-nvl72-300k": "A · NVL72", "arch-b-ocp8-300k": "B · OCP 8-GPU" };
+const state = { design: NAMES[0], tab: "tiers", tier: 3, asm: {} , nos: "sonic", role: "leaf" };
+try { Object.assign(state, JSON.parse(localStorage.getItem("dcd-view") || "{}")); } catch (e) {}
+if (!D[state.design]) state.design = NAMES[0];
+const save = () => { try { localStorage.setItem("dcd-view", JSON.stringify(state)); } catch (e) {} };
+
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const nf = (x, d = 0) => Number(x).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: 0 });
+const money = x => { const a = Math.abs(x); return a >= 1e9 ? "$" + nf(x / 1e9, 2) + "B" : a >= 1e6 ? "$" + nf(x / 1e6, 2) + "M" : a >= 1e3 ? "$" + nf(x / 1e3, 1) + "K" : "$" + nf(x, 0); };
+const power = w => { const a = Math.abs(w); return a >= 1e6 ? nf(w / 1e6, 2) + " MW" : a >= 1e3 ? nf(w / 1e3, 1) + " kW" : nf(w, 0) + " W"; };
+const qty = q => Number.isInteger(q) ? nf(q) : nf(q, 3);
+const doc = () => D[state.design];
+const tierOf = (d, l) => d.tiers.find(t => t.level === l);
+const findAsm = (d, id) => { for (const t of d.tiers) for (const a of t.assemblies || []) if (a.id === id) return [t, a]; return [null, null]; };
+const kpi = (k, v) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`;
+const mediaVar = m => `var(--m-${m})`;
+
+/* ---------- header, design picker, tabs ---------- */
+function renderHeader() {
+  const d = doc();
+  $("#title").textContent = d.title;
+  $("#desc").textContent = d.description;
+  $("#designs").innerHTML = NAMES.map(n => `<button data-d="${n}" aria-pressed="${n === state.design}">${esc(SHORT[n] || n)}</button>`).join("");
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
+  ["tiers", "fabric", "compare", "notes"].forEach(t => { $("#view-" + t).hidden = t !== state.tab; });
+}
+$("#designs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.design = b.dataset.d; state.asm = {}; render(); });
+$("#tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.tab = b.dataset.tab; render(); });
+
+/* ---------- tier ladder ---------- */
+function ladderValue(d, t) {
+  const s = d.summary;
+  if (t.level === 1) return nf(s.gpus) + " GPUs";
+  const a = t.assemblies[0];
+  if (t.level === 2) return nf(a.attrs.accelerators) + " GPU " + a.attrs.form + " ×" + nf(a.qty_total);
+  if (t.level === 3) return nf(a.attrs.gpus) + " GPU · " + nf(a.attrs.power_kw, 0) + " kW ×" + nf(a.qty_total);
+  if (t.level === 4) return nf(s.superpods) + " SuperPods";
+  if (t.level === 5) return nf(s.halls) + " halls";
+  return nf(s.it_mw, 0) + " MW IT";
+}
+function renderLadder() {
+  const d = doc();
+  $("#ladder").innerHTML = d.tiers.map(t => `<button data-l="${t.level}" aria-current="${t.level === state.tier}">
+    <span class="eyebrow">Tier ${t.level}</span><span class="t">${esc(t.title)}</span><span class="v">${esc(ladderValue(d, t))}</span></button>`).join("");
+}
+$("#ladder").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.tier = +b.dataset.l; render(); });
+
+/* ---------- tier panel ---------- */
+function currentAsm(t) {
+  const id = state.asm[t.level];
+  return t.assemblies.find(a => a.id === id) || t.assemblies[0];
+}
+function renderTier() {
+  const d = doc();
+  const t = tierOf(d, state.tier);
+  const el = $("#tier");
+  if (t.level === 1) { el.innerHTML = tier1(d, t); return; }
+  const a = currentAsm(t);
+  const chips = t.assemblies.length > 1 ? `<div class="chips" id="asmchips">${t.assemblies.map(x =>
+    `<button class="chip" data-a="${x.id}" aria-pressed="${x.id === a.id}">${esc(x.name)} ×${nf(x.qty_total)}</button>`).join("")}</div>` : "";
+  el.innerHTML = `
+    <div class="tier-head"><div><div class="eyebrow">Tier ${t.level} · ${esc(t.blurb)}</div><h2>${esc(a.name)}</h2></div>
+      <div class="muted num">${nf(a.qty_total)} in the build · ${power(a.power_w)} and ${money(a.cost_usd)} each</div></div>
+    ${chips}
+    <div class="grid2">
+      <div><div class="diagram">${draw(a, d)}</div>${legend(a)}</div>
+      <div class="kpis">${kpis(t.level, a, d)}</div>
+    </div>
+    ${bom(a)}`;
+}
+$("#tier").addEventListener("click", e => {
+  const c = e.target.closest("[data-a]");
+  if (c) { state.asm[state.tier] = c.dataset.a; render(); return; }
+  const j = e.target.closest("[data-jump]");
+  if (j) {
+    const [t, a] = findAsm(doc(), j.dataset.jump);
+    if (t) { state.tier = t.level; state.asm[t.level] = a.id; render(); window.scrollTo({ top: 0 }); }
+  }
+});
+
+function bom(a) {
+  const rows = a.bom.map(l => `<tr>
+    <td>${l.kind === "assembly" ? `<span class="tag asm">assembly</span><button class="linkish" data-jump="${l.ref}">${esc(l.name)}</button>` : `<span class="tag">${esc(l.category.replace(/_/g, " "))}</span>${esc(l.name)}`}</td>
+    <td class="n">${qty(l.qty)}</td><td class="n">${power(l.unit_power_w)}</td><td class="n">${money(l.unit_cost_usd)}</td>
+    <td class="n">${power(l.power_w)}</td><td class="n">${money(l.cost_usd)}</td><td class="note">${esc(l.note)}</td></tr>`).join("");
+  return `<div><h3>Bill of materials, per ${esc(a.name.split(" (")[0].toLowerCase())}</h3>
+    <p class="muted" style="margin:4px 0 8px">Child assemblies stay opaque here; open one to see what is inside. Costs are planning placeholders from the editable catalog, not quotes.</p>
+    <div class="tablewrap"><table><thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Unit power</th><th class="n">Unit cost</th><th class="n">Power</th><th class="n">Cost</th><th>Note</th></tr></thead>
+    <tbody>${rows}</tbody>
+    <tfoot><tr><td>Per unit</td><td></td><td></td><td></td><td class="n">${power(a.power_w)}</td><td class="n">${money(a.cost_usd)}</td><td></td></tr>
+    <tr><td>All ${nf(a.qty_total)} in the build</td><td></td><td></td><td></td><td class="n">${power(a.power_w_total)}</td><td class="n">${money(a.cost_usd_total)}</td><td></td></tr></tfoot></table></div></div>`;
+}
+
+function tier1(d, t) {
+  const groups = {};
+  t.items.forEach(i => { (groups[i.category] = groups[i.category] || []).push(i); });
+  const totalCost = t.items.reduce((s, i) => s + i.cost_usd, 0);
+  const totalPow = t.items.reduce((s, i) => s + i.power_w, 0);
+  const s = d.summary;
+  const rows = t.items.map(i => `<tr><td><span class="tag">${esc(i.category.replace(/_/g, " "))}</span>${esc(i.name)}</td>
+    <td class="n">${qty(i.qty)}</td><td class="n">${nf(i.qty / s.gpus, 3)}</td><td class="n">${power(i.unit_power_w)}</td><td class="n">${money(i.unit_cost_usd)}</td>
+    <td class="n">${power(i.power_w)}</td><td class="n">${money(i.cost_usd)}</td>
+    <td><div class="bar" title="${nf(100 * i.cost_usd / totalCost, 1)}% of equipment cost"><span style="width:${(100 * i.cost_usd / totalCost).toFixed(2)}%"></span></div></td></tr>`).join("");
+  const gpu = t.items.find(i => i.category === "accelerator");
+  return `<div class="tier-head"><div><div class="eyebrow">Tier 1 · ${esc(t.blurb)}</div><h2>Every indivisible part in the build</h2></div>
+    <div class="muted num">${nf(t.items.length)} SKUs · ${power(totalPow)} · ${money(totalCost)} equipment</div></div>
+    <div class="grid2"><div class="diagram">${drawSilicon(t, d)}</div>
+    <div class="kpis">${kpi("Accelerator", esc(gpu.name.split(" (")[0]))}${kpi("Accelerator TDP", power(gpu.unit_power_w))}
+      ${kpi("HBM per GPU", nf(gpu.specs.hbm_gb) + " GB")}${kpi("Scale-up per GPU", nf(gpu.specs.scale_up_gbytes_s) + " GB/s")}
+      ${kpi("Scale-out per GPU", nf(d.spec.scale_out.nic_gbps) + " Gb/s")}${kpi("Switch ASIC", esc(d.fabric.switch_name.split(" (")[0]))}
+      ${kpi("Optical modules (800G eq.)", nf(d.complexity.optical_modules_800g_eq))}${kpi("Share of cost in GPUs", nf(100 * gpu.cost_usd / totalCost, 1) + "%")}</div></div>
+    <div><h3>Indivisible parts, whole build</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Per GPU</th><th class="n">Unit power</th><th class="n">Unit cost</th><th class="n">Power</th><th class="n">Cost</th><th>Cost share</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+}
+
+function kpis(level, a, d) {
+  const at = a.attrs, s = d.summary;
+  if (level === 2) {
+    if (a.id === "switch-tray") return kpi("Scale-up switch ASICs", nf(a.diagram.asics)) + kpi("Trays per domain", nf(at.per_domain)) + kpi("Power", power(a.power_w)) + kpi("Rack units", nf(at.rack_units));
+    return kpi("Accelerators", nf(at.accelerators)) + kpi("Form", esc(at.form)) + kpi("Scale-up", esc(at.scale_up)) + kpi("Scale-up domain", esc(at.scale_up_domain)) +
+      kpi("Scale-up per GPU", nf(at.scale_up_gbytes_s_per_gpu) + " GB/s") + kpi("Scale-out per GPU", nf(at.scale_out_gbps_per_gpu) + " Gb/s · " + at.scale_out_planes + " planes") +
+      kpi("HBM per GPU", nf(at.hbm_gb_per_gpu) + " GB") + kpi("Node power", power(a.power_w));
+  }
+  if (level === 3) {
+    const pill = at.budget_used > 0.95 ? "warn" : "ok";
+    return kpi("GPUs per rack", nf(at.gpus)) + kpi("Rack load", `${nf(at.power_kw, 1)} kW <span class="pill ${pill}">${nf(100 * at.budget_used, 0)}% of ${nf(at.power_budget_kw)} kW</span>`) +
+      kpi("Cooling", esc(at.cooling)) + kpi("Liquid / air heat", nf(at.liquid_kw, 1) + " / " + nf(at.air_kw, 1) + " kW") +
+      kpi("Rack units used", nf(at.rack_units_used) + " of " + nf(at.rack_units)) + kpi("Scale-up domains", nf(at.scale_up_domains) + " × " + nf(at.scale_up_domain_gpus) + " GPUs") +
+      kpi("Scale-out ports", nf(at.scale_out_ports)) + kpi("Racks in build", nf(a.qty_total));
+  }
+  if (level === 4 && at.role === "su") {
+    return kpi("GPUs", nf(at.gpus)) + kpi("Racks", nf(at.racks)) + kpi("Rails", nf(at.rails)) + kpi("Leaves per plane", nf(at.leaves_per_plane)) +
+      kpi("Leaf ports down / up", nf(at.leaf_ports_down) + " / " + nf(at.leaf_ports_up)) + kpi("Leaf port fill", nf(100 * at.leaf_port_fill, 1) + "%") +
+      kpi("Network racks", nf(at.network_racks)) + kpi("GPU links", Object.entries(at.host_media).map(([m, n]) => nf(n) + " " + m.toUpperCase()).join(" · "));
+  }
+  if (level === 4) {
+    return kpi("GPUs", nf(at.gpus)) + kpi("Racks", nf(at.racks)) + kpi("Scalable units", nf(at.sus)) + kpi("Leaves / spines per plane", nf(at.leaves_per_plane) + " / " + nf(at.spines_per_plane)) +
+      kpi("Spine ports down", nf(at.spine_ports_down)) + kpi("Leaf-spine links", nf(at.leaf_spine_links)) +
+      kpi("Oversubscription", at.non_blocking ? "1:1 non-blocking" : "oversubscribed") + kpi("Power", power(a.power_w));
+  }
+  if (level === 5) {
+    return kpi("GPUs", nf(at.gpus)) + kpi("SuperPods", nf(at.superpods)) + kpi("IT load", nf(at.it_mw, 1) + " MW <span class='muted'>(cap " + nf(at.hall_it_mw_max) + ")</span>") +
+      kpi("Facility load", nf(at.facility_mw, 1) + " MW") + kpi("Liquid / air heat", nf(at.liquid_mw, 1) + " / " + nf(at.air_mw, 1) + " MW") +
+      kpi("CDUs", nf(at.cdus)) + kpi("MPO patch panels", nf(at.patch_panels)) + kpi("Uplinks to core", nf(at.uplinks_to_core));
+  }
+  return kpi("GPUs", nf(s.gpus)) + kpi("Data halls", nf(at.halls)) + kpi("IT load", nf(at.it_mw, 1) + " MW") + kpi("Facility load", nf(at.facility_mw, 1) + " MW · PUE " + at.pue) +
+    kpi("Capex (placeholder)", money(s.capex_usd)) + kpi("Capex per GPU", money(s.capex_per_gpu_usd)) +
+    kpi("Fabric", at.fabric_tiers + "-tier · " + nf(d.fabric.switches.total) + " switches") + kpi("Install labor", nf(d.complexity.install_labor_hours) + " tech-hours");
+}
+
+function legend(a) {
+  const k = a.diagram.kind;
+  if (k === "rack") return `<div class="legend"><span><i style="background:var(--k-node)"></i>compute</span><span><i style="background:var(--k-switch)"></i>scale-up switch</span><span><i style="background:var(--k-power)"></i>power shelf</span><span><i style="background:var(--k-mgmt)"></i>management</span></div>`;
+  const media = a.diagram.media || (k === "campus" ? null : null);
+  const ms = k === "campus" ? Object.keys(MEDIA) : media ? Object.keys(media) : [];
+  if (!ms.length) return "";
+  return `<div class="legend">${ms.map(m => `<span><i style="background:${mediaVar(m)}"></i>${MEDIA[m]}</span>`).join("")}</div>`;
+}
+
+/* ---------- drawings (SVG, generated from the compiled design) ---------- */
+const svg = (w, h, body, label) => `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">${body}</svg>`;
+const rect = (x, y, w, h, fill, extra = "") => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" ${extra}/>`;
+const text = (x, y, s, size = 11, extra = "") => `<text x="${x}" y="${y}" font-size="${size}" ${extra}>${esc(s)}</text>`;
+
+function draw(a, d) {
+  const g = a.diagram;
+  switch (g.kind) {
+    case "node": return drawNode(g, a, d);
+    case "switch-tray": return drawSwitchTray(g, a);
+    case "rack": return drawRack(g, a);
+    case "su": return drawSU(g, a, d);
+    case "superpod": return drawSuperPod(g, a, d);
+    case "hall": return drawHall(g, a);
+    case "campus": return drawCampus(g, a, d);
+  }
+  return "";
+}
+
+function drawSilicon(t, d) {
+  const cats = [["accelerator", "GPU"], ["cpu", "CPU"], ["nic", "NIC"], ["scale_up_switch", "Scale-up ASIC"], ["pcie", "PCIe Gen6 sw"], ["switch", "51.2T+ switch"], ["optics", "Optics (800G eq)"], ["copper", "Copper cables"]];
+  const vals = cats.map(([c, l]) => [l, t.items.filter(i => i.category === c).reduce((s, i) => s + i.qty, 0), c]).filter(x => x[1] > 0);
+  const max = Math.max(...vals.map(v => v[1]));
+  const W = 640, row = 34, H = vals.length * row + 30;
+  let b = text(16, 20, "Units across the whole build (log scale)", 11, 'class="lbl"');
+  vals.forEach(([l, v, c], i) => {
+    const y = 30 + i * row, w = Math.max(4, 380 * Math.log10(v + 1) / Math.log10(max + 1));
+    const fill = c === "optics" ? "var(--fiber)" : c === "copper" ? "var(--m-aec)" : c === "switch" || c === "scale_up_switch" ? "var(--k-switch)" : "var(--k-node)";
+    b += text(16, y + 17, l, 12) + rect(150, y + 4, w, 18, fill, 'rx="2"') + text(156 + w, y + 17, nf(v), 12);
+  });
+  return svg(W, H, b, "Indivisible unit counts");
+}
+
+function drawNode(g, a, d) {
+  const W = 640, H = 300;
+  const n = g.gpus, gw = Math.min(110, (W - 80) / n - 10);
+  const x0 = (W - (n * (gw + 10) - 10)) / 2;
+  let b = rect(20, 20, W - 40, H - 40, "var(--panel)", 'stroke="var(--line)" rx="6"') + text(34, 40, a.name + " · " + a.attrs.rack_units + "RU", 12);
+  // scale-up fabric
+  const suY = 70;
+  if (g.scale_up_switches) {
+    b += `<line x1="${x0 + gw / 2}" y1="${suY}" x2="${x0 + (n - 1) * (gw + 10) + gw / 2}" y2="${suY}" stroke="var(--k-switch)" stroke-width="2"/>`;
+    const sw = 120, sx0 = (W - (g.scale_up_switches * (sw + 20) - 20)) / 2;
+    for (let i = 0; i < g.scale_up_switches; i++) b += rect(sx0 + i * (sw + 20), suY - 12, sw, 22, "var(--k-switch)", 'rx="3"') + text(sx0 + i * (sw + 20) + 8, suY + 3, g.scale_up + " sw", 10, 'fill="var(--accent-ink)" style="fill:var(--accent-ink)"');
+  } else {
+    b += rect(60, suY - 8, W - 120, 14, "var(--soft)", 'rx="3"') + text(70, suY + 3, g.scale_up + " to the rack's switch trays over the copper spine", 10);
+  }
+  for (let i = 0; i < n; i++) {
+    const x = x0 + i * (gw + 10);
+    b += `<line x1="${x + gw / 2}" y1="${suY + 8}" x2="${x + gw / 2}" y2="110" stroke="var(--k-switch)" stroke-width="2"/>`;
+    b += rect(x, 110, gw, 54, "var(--k-node)", 'rx="4"') + text(x + 8, 132, "GPU " + i, 11, 'style="fill:#fff"') + text(x + 8, 150, nf(a.attrs.hbm_gb_per_gpu) + "GB", 10, 'style="fill:#fff"');
+    b += `<line x1="${x + gw / 2}" y1="164" x2="${x + gw / 2}" y2="190" stroke="var(--line)" stroke-width="2"/>`;
+    b += rect(x + 4, 190, gw - 8, 20, "var(--soft)", 'stroke="var(--fiber)" rx="3"') + text(x + 10, 204, "NIC 800G", 9);
+    b += `<line x1="${x + gw / 2}" y1="210" x2="${x + gw / 2}" y2="232" stroke="var(--fiber)" stroke-width="2"/>`;
+  }
+  b += text(x0, 248, `each NIC → ${g.planes} × ${nf(d.fabric.port_gbps)}G scale-out planes (rail = GPU index)`, 10, 'class="lbl"');
+  const cw = 90, cx0 = W - 40 - g.cpus * (cw + 10);
+  for (let i = 0; i < g.cpus; i++) b += rect(cx0 + i * (cw + 10), 30, cw, 20, "var(--soft)", 'stroke="var(--line)" rx="3"') + text(cx0 + i * (cw + 10) + 8, 44, "CPU " + i, 10);
+  if (g.pcie_switches) b += text(40, 268, `${g.pcie_switches} × PCIe Gen6 switches join NICs, CPUs and NVMe`, 10, 'class="lbl"');
+  return svg(W, H, b, "Node block diagram");
+}
+
+function drawSwitchTray(g, a) {
+  const W = 640, H = 140;
+  let b = rect(20, 20, W - 40, 100, "var(--panel)", 'stroke="var(--line)" rx="6"') + text(34, 42, a.name, 12);
+  for (let i = 0; i < g.asics; i++) b += rect(60 + i * 190, 56, 170, 40, "var(--k-switch)", 'rx="4"') + text(72 + i * 190, 80, "NVLink switch ASIC", 11, 'style="fill:var(--accent-ink)"');
+  b += text(440, 80, "copper spine ↔ all 72 GPUs", 11, 'class="lbl"');
+  return svg(W, H, b, "Switch tray");
+}
+
+function drawRack(g, a) {
+  const U = 9, W = 640, H = g.rack_units * U + 60, x = 200, w = 240;
+  let y = 30, b = rect(x - 8, 22, w + 16, g.rack_units * U + 16, "var(--soft)", 'stroke="var(--line)" rx="4"');
+  const col = { node: "var(--k-node)", switch: "var(--k-switch)", power: "var(--k-power)", mgmt: "var(--k-mgmt)" };
+  const groups = [];
+  g.slots.forEach(s => { const last = groups[groups.length - 1]; if (last && last.label === s.label) last.n++; else groups.push({ ...s, n: 1 }); });
+  groups.forEach(gr => {
+    for (let i = 0; i < gr.n; i++) { b += rect(x, y + 1, w, gr.ru * U - 2, col[gr.kind], 'rx="1.5"'); y += gr.ru * U; }
+    const mid = y - gr.n * gr.ru * U / 2;
+    b += `<line x1="${x + w + 6}" y1="${y - gr.n * gr.ru * U + 2}" x2="${x + w + 6}" y2="${y - 2}" stroke="var(--muted)"/>` + text(x + w + 14, mid + 4, `${gr.n} × ${gr.label}`, 11);
+  });
+  b += text(x, H - 8, `${y / U - 30 / U | 0} of ${g.rack_units} RU used · ${g.cooling} cooling · ${nf(a.attrs.power_kw, 1)} kW`, 11, 'class="lbl"');
+  b += text(20, 40, "Front elevation", 11, 'class="lbl"');
+  return svg(W, H, b, "Rack elevation");
+}
+
+function rackRow(x, y, n, nets, w, h, colorFor) {
+  let b = "", left = Math.floor(n / 2), pos = x;
+  for (let i = 0; i < left; i++) { b += rect(pos, y, w - 2, h, colorFor(left - i), 'rx="1.5"'); pos += w; }
+  for (let i = 0; i < nets; i++) { b += rect(pos, y, w - 2, h, "var(--k-switch)", 'rx="1.5"'); pos += w; }
+  for (let i = 0; i < n - left; i++) { b += rect(pos, y, w - 2, h, colorFor(i + 1), 'rx="1.5"'); pos += w; }
+  return [b, pos];
+}
+function mediaByOffset(media, racks, perRackLinks) {
+  // racks closest to the network racks use the shortest-reach medium
+  const order = ["dac", "aec", "lpo", "dr", "fr"].filter(m => media[m]);
+  const racksPer = order.map(m => media[m] / perRackLinks);
+  return off => { let c = 0; for (let i = 0; i < order.length; i++) { c += racksPer[i] / 2; if (off <= c + 1e-6) return mediaVar(order[i]); } return mediaVar(order[order.length - 1]); };
+}
+
+function drawSU(g, a, d) {
+  const W = 680, rw = Math.min(40, 600 / (g.racks + g.network_racks)), H = 230;
+  const perRack = a.attrs.gpus / g.racks * g.planes;
+  const colorFor = mediaByOffset(g.media, g.racks, perRack);
+  const x0 = (W - rw * (g.racks + g.network_racks)) / 2;
+  let [b] = rackRow(x0, 70, g.racks, g.network_racks, rw, 90, colorFor);
+  b = text(20, 24, `One row: ${g.racks} compute racks, ${g.network_racks} network racks in the middle holding ${g.leaves * g.planes} leaves`, 12) + b;
+  b += text(20, 44, `Rack colour = GPU-to-leaf medium chosen by cable length`, 11, 'class="lbl"');
+  b += text(20, 190, `${g.rails} rails × ${g.planes} planes: GPU i of every node in this row lands on the same leaf group`, 11, 'class="lbl"');
+  b += text(20, 208, `${nf(a.attrs.gpus)} GPUs · ${nf(g.leaves)} leaves per plane · ${a.attrs.leaf_ports_down} down / ${a.attrs.leaf_ports_up} up per leaf`, 11, 'class="lbl"');
+  return svg(W, H, b, "Scalable unit row");
+}
+
+function drawSuperPod(g, a, d) {
+  const rows = g.sus.length, W = 680, rowH = 26, gap = 10;
+  const spineAt = Math.floor(rows / 2);
+  const H = 70 + (rows + 1) * (rowH + gap) + 40;
+  const maxR = Math.max(...g.sus) + 2;
+  const rw = Math.min(18, 520 / maxR);
+  let b = text(20, 24, `${rows} scalable units (one per row) around a spine row: ${g.spines} spines per plane × ${g.planes} planes`, 12);
+  let y = 50;
+  const lm = Object.keys(g.media)[0];
+  for (let r = 0; r <= rows; r++) {
+    if (r === spineAt) {
+      b += rect(120, y, 520, rowH, "var(--k-switch)", 'rx="3"') + text(20, y + 17, "spine row", 11) + text(130, y + 17, `${g.spines * g.planes} spine switches`, 11, 'style="fill:var(--accent-ink)"');
+      y += rowH + gap; continue;
+    }
+    const i = r > spineAt ? r - 1 : r;
+    if (i >= rows) break;
+    const [rb] = rackRow(120, y, g.sus[i], 1, rw, rowH, () => "var(--k-node)");
+    b += text(20, y + 17, `SU ${i + 1} · ${g.sus[i]} racks`, 11) + rb;
+    const lx = 120 + Math.floor(g.sus[i] / 2) * rw + rw / 2;
+    b += `<line x1="${lx}" y1="${y + (r < spineAt ? rowH : 0)}" x2="${lx}" y2="${50 + spineAt * (rowH + gap) + (r < spineAt ? 0 : rowH)}" stroke="${mediaVar(lm)}" stroke-width="2" opacity=".8"/>`;
+    y += rowH + gap;
+  }
+  b += text(20, y + 14, `${nf(a.attrs.leaf_spine_links)} leaf-spine links, every leaf to every spine of its plane · ${nf(a.attrs.gpus)} GPUs`, 11, 'class="lbl"');
+  return svg(W, H, b, "SuperPod floor plan");
+}
+
+function drawHall(g, a) {
+  const n = g.superpods.length, cols = Math.min(3, n), rows = Math.ceil(n / cols);
+  const W = 680, cw = (W - 60) / cols, ch = 64, H = 90 + rows * (ch + 10) + 40;
+  let b = text(20, 24, `Hall floor: ${n} SuperPods · ${nf(a.attrs.it_mw, 1)} MW IT of a ${nf(a.attrs.hall_it_mw_max)} MW envelope`, 12);
+  b += rect(20, 36, W - 40, 22, "var(--soft)", 'rx="3"') + text(30, 51, `MDA: ${nf(a.attrs.patch_panels)} MPO panels · ${nf(a.attrs.uplinks_to_core)} trunks to the campus core`, 10);
+  g.superpods.forEach((s, i) => {
+    const x = 30 + (i % cols) * cw, y = 70 + Math.floor(i / cols) * (ch + 10);
+    const full = s.racks === Math.max(...g.superpods.map(p => p.racks));
+    b += rect(x, y, cw - 12, ch, full ? "var(--k-node)" : "var(--soft)", `rx="4" ${full ? "" : 'stroke="var(--k-node)" stroke-dasharray="4 3"'}`);
+    const fc = full ? 'style="fill:#fff"' : "";
+    b += text(x + 10, y + 22, `SuperPod ${i + 1}`, 12, fc) + text(x + 10, y + 40, `${nf(s.gpus)} GPUs · ${s.racks} racks`, 10, fc) + text(x + 10, y + 55, `${nf(s.mw, 2)} MW`, 10, fc);
+  });
+  const yb = 70 + rows * (ch + 10) + 6;
+  for (let i = 0; i < Math.min(g.cdus, 60); i++) b += rect(30 + i * 10, yb, 8, 14, "var(--fiber)", 'rx="1"');
+  b += text(30 + Math.min(g.cdus, 60) * 10 + 8, yb + 12, `${g.cdus} CDUs (1.5 MW, N+1)`, 10, 'class="lbl"');
+  return svg(W, H, b, "Data hall plan");
+}
+
+function drawCampus(g, a, d) {
+  const n = g.halls.length, W = 720, H = 330;
+  const hw = Math.min(90, (W - 40) / n - 10), x0 = (W - (n * (hw + 10) - 10)) / 2;
+  const coreX = W / 2 - 110, coreY = 150;
+  const reach = Object.fromEntries(["dac", "aec", "lpo", "dr", "fr"].map(m => [m, ({ dac: 2.5, aec: 7, lpo: 100, dr: 500, fr: 2000 })[m]]));
+  const allowed = d.spec.scale_out.allowed_media;
+  const mediaFor = m => ["dac", "aec", "lpo", "dr", "fr"].find(x => allowed.includes(x) && reach[x] >= m) || "fr";
+  let b = text(20, 22, `${n} data halls, each uplinked to the super-spine core (${nf(g.core_switches)} switches across ${g.planes} planes)`, 12);
+  g.halls.forEach((h, i) => {
+    const x = x0 + i * (hw + 10);
+    const m = mediaFor(h.to_core_m);
+    b += `<line x1="${x + hw / 2}" y1="104" x2="${W / 2}" y2="${coreY}" stroke="${mediaVar(m)}" stroke-width="3"/>`;
+    b += rect(x, 40, hw, 64, "var(--k-node)", 'rx="4"') + text(x + 6, 58, "Hall " + (i + 1), 11, 'style="fill:#fff"') + text(x + 6, 74, nf(h.gpus / 1000, 1) + "K GPU", 10, 'style="fill:#fff"') + text(x + 6, 90, nf(h.mw, 0) + " MW", 10, 'style="fill:#fff"');
+    b += text(x + 4, 120, nf(h.to_core_m, 0) + " m", 9, 'class="lbl"');
+  });
+  b += rect(coreX, coreY, 220, 44, "var(--k-switch)", 'rx="4"') + text(coreX + 12, coreY + 18, "Super-spine core", 12, 'style="fill:var(--accent-ink)"') + text(coreX + 12, coreY + 34, nf(g.core_switches) + " switches", 10, 'style="fill:var(--accent-ink)"');
+  b += `<line x1="${W / 2}" y1="${coreY + 44}" x2="${W / 2}" y2="234" stroke="var(--muted)" stroke-width="2"/>`;
+  b += rect(W / 2 - 90, 234, 180, 30, "var(--soft)", 'stroke="var(--line)" rx="4"') + text(W / 2 - 78, 254, `WAN / DCI edge · ${g.wan} routers`, 11);
+  b += rect(20, 234, 200, 30, "var(--soft)", 'stroke="var(--line)" rx="4"') + text(30, 254, `${g.substations} utility substations`, 11);
+  b += text(20, 300, `${nf(a.attrs.it_mw, 0)} MW IT · ${nf(a.attrs.facility_mw, 0)} MW facility at PUE ${a.attrs.pue} · line colour = medium chosen for that hall's distance`, 11, 'class="lbl"');
+  return svg(W, H, b, "Campus diagram");
+}
+
+/* ---------- fabric tab ---------- */
+function renderFabric() {
+  const d = doc(), f = d.fabric, r = d.roce, bgp = d.bgp;
+  const sw = f.switches;
+  const layers = { host: "GPU → leaf", leaf_spine: "Leaf → spine", core: "Spine → super-spine" };
+  const mediaRows = ["host", "leaf_spine", "core"].filter(l => f.media_by_layer[l]).map(l => [l, f.media_by_layer[l]]).map(([layer, ms]) => {
+    const total = Object.values(ms).reduce((s, x) => s + x.links, 0);
+    return Object.entries(ms).map(([m, x]) => `<tr><td>${layers[layer] || layer}</td><td><i style="display:inline-block;width:10px;height:10px;background:${mediaVar(m)};border-radius:2px;margin-right:6px"></i>${MEDIA[m]}</td><td class="n">${nf(x.links)}</td><td class="n">${nf(100 * x.links / total, 1)}%</td><td class="n">${nf(x.max_m, 1)} m</td></tr>`).join("");
+  }).join("");
+  const alts = d.alternatives.map(x => `<tr${x.selected ? ' style="font-weight:600"' : ""}><td>${esc(x.switch_name.split(" (")[0])}</td><td class="n">${x.planes}</td>
+    ${x.feasible ? `<td class="n">${x.port_gbps}G</td><td class="n">${x.radix}</td><td class="n">${x.tiers}</td><td class="n">${nf(x.max_endpoints)}</td><td class="n">${nf(x.superpod_gpus)}</td><td class="n">${nf(x.switches)}</td><td class="n">${nf(x.fabric_links)}</td><td>${x.selected ? "chosen" : ""}</td>` : `<td colspan="8">${esc(x.reason)}</td>`}</tr>`).join("");
+  const roles = Object.entries(r.roles).map(([role, x]) => `<tr><td>${role.replace("_", "-")}</td><td>${x.ports.map(p => `${p.count} × ${nf(p.headroom_bytes / 1024, 0)} KB (${nf(p.worst_cable_m, 0)} m)`).join("<br>")}</td><td class="n">${nf(x.headroom_total_mb, 1)} MB</td><td class="n">${nf(x.buffer_mb)} MB</td><td class="n">${nf(100 * x.headroom_share_of_buffer, 1)}%</td></tr>`).join("");
+  const samples = d.sample_configs || {};
+  const roleNames = Object.keys(samples);
+  if (!samples[state.role]) state.role = roleNames[0];
+  const nosList = d.spec.nos;
+  if (!nosList.includes(state.nos)) state.nos = nosList[0];
+  const cfg = samples[state.role] ? samples[state.role][state.nos] : "";
+  $("#view-fabric").innerHTML = `
+    <div class="panel stack"><div><div class="eyebrow">Scale-out fabric</div><h2>${f.tiers}-tier rail-optimized Clos · ${f.planes} plane${f.planes > 1 ? "s" : ""} × ${f.port_gbps}G · radix ${f.radix}</h2></div>
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${kpi("Leaf", nf(sw.leaf))}${kpi("Spine", nf(sw.spine))}${kpi("Super-spine", nf(sw.super_spine))}${sw.core ? kpi("Core", nf(sw.core)) : ""}${kpi("Total switches", nf(sw.total))}
+      ${kpi("Leaf split", f.leaf_down + " down / " + f.leaf_up + " up")}${kpi("Max GPUs at this radix", nf(f.max_endpoints))}${kpi("BGP sessions", nf(d.complexity.bgp_sessions))}${kpi("Optical modules", nf(d.complexity.optical_modules_800g_eq))}${kpi("Copper links", nf(d.complexity.links_copper))}</div>
+      <div><h3>Link media by layer</h3><div class="tablewrap"><table><thead><tr><th>Layer</th><th>Medium</th><th class="n">Links</th><th class="n">Share</th><th class="n">Longest</th></tr></thead><tbody>${mediaRows}</tbody></table></div></div>
+      <div><h3>Same cluster on other switch choices</h3><div class="tablewrap"><table><thead><tr><th>Switch</th><th class="n">Planes</th><th class="n">Port</th><th class="n">Radix</th><th class="n">Tiers</th><th class="n">Max GPUs</th><th class="n">SuperPod</th><th class="n">Switches</th><th class="n">Fabric links</th><th></th></tr></thead><tbody>${alts}</tbody></table></div></div>
+    </div>
+    <div class="panel stack"><div><div class="eyebrow">Lossless RoCE</div><h2>PFC headroom and ECN starting points</h2></div>
+      <p class="muted prose" style="margin:0">RoCE on DSCP ${r.roce_dscp} → priority ${r.lossless_priority} (PFC no-drop, ECN marking); CNP on DSCP ${r.cnp_dscp} → priority ${r.cnp_priority}. ECN Kmin ${r.ecn.kmin_kb} KB, Kmax ${r.ecn.kmax_kb} KB, Pmax ${r.ecn.pmax * 100}% at ${r.port_gbps}G, scaled from DCQCN and meant to be tuned. Headroom = 2 × MTU + rate × (2 × length × 5 ns/m + ${r.t_response_us} µs).</p>
+      <div class="tablewrap"><table><thead><tr><th>Role</th><th>Ports × headroom (worst cable)</th><th class="n">Headroom</th><th class="n">ASIC buffer</th><th class="n">Share</th></tr></thead><tbody>${roles}</tbody></table></div>
+    </div>
+    ${bgp ? `<div class="panel stack"><div><div class="eyebrow">Routing</div><h2>BGP and addressing plan</h2></div>
+      <div class="tablewrap"><table><tbody>
+      <tr><td>Model</td><td>${esc(bgp.model)}</td></tr><tr><td>Leaf ASN</td><td class="mono">${esc(bgp.asn.leaf)}</td></tr><tr><td>Spine ASN</td><td class="mono">${esc(bgp.asn.spine)}</td></tr><tr><td>Super-spine ASN</td><td class="mono">${esc(bgp.asn.super_spine)}</td></tr>
+      <tr><td>Unique ASNs</td><td class="num" style="text-align:left">${nf(bgp.asn.unique_asns)}</td></tr><tr><td>GPU host links</td><td class="mono">${esc(bgp.ip_plan.gpu_host_links)}</td></tr><tr><td>Switch links</td><td class="mono">${esc(bgp.ip_plan.switch_links)}</td></tr><tr><td>Loopbacks</td><td class="mono">${esc(bgp.ip_plan.loopbacks)}</td></tr>
+      </tbody></table></div></div>` : ""}
+    <div class="panel stack"><div><div class="eyebrow">Multi-NOS</div><h2>Reference config: ${esc(samples[state.role] ? samples[state.role]._name : "")}</h2></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px"><div class="seg" id="roles">${roleNames.map(x => `<button data-role="${x}" aria-pressed="${x === state.role}">${x === "super" ? "super-spine" : x}</button>`).join("")}</div>
+      <div class="seg" id="noses">${nosList.map(x => `<button data-nos="${x}" aria-pressed="${x === state.nos}">${({ sonic: "SONiC", eos: "Arista EOS", nxos: "Cisco NX-OS" })[x]}</button>`).join("")}</div>
+      <button class="chip" id="copycfg">Copy config</button></div>
+      <p class="muted" style="margin:0">Plane 0, first device of each role. Any switch renders with <code>dcd config &lt;spec&gt; --nos ${state.nos} --role ${state.role} --plane P --index N</code>. Validate in a lab before production.</p>
+      <pre class="cfg" id="cfg">${esc(cfg)}</pre></div>`;
+}
+$("#view-fabric").addEventListener("click", e => {
+  const r = e.target.closest("[data-role]"), n = e.target.closest("[data-nos]");
+  if (r) { state.role = r.dataset.role; render(); }
+  if (n) { state.nos = n.dataset.nos; render(); }
+  if (e.target.id === "copycfg") {
+    const t = $("#cfg").textContent, btn = e.target;
+    const done = ok => { btn.textContent = ok ? "Copied" : "Select and copy"; if (!ok) { const s = window.getSelection(), rg = document.createRange(); rg.selectNodeContents($("#cfg")); s.removeAllRanges(); s.addRange(rg); } };
+    try { navigator.clipboard.writeText(t).then(() => done(true), () => done(false)); } catch (err) { done(false); }
+  }
+});
+
+/* ---------- compare tab ---------- */
+function renderCompare() {
+  const ds = NAMES.map(n => D[n]);
+  const rack = d => tierOf(d, 3).assemblies[0];
+  const sp = d => tierOf(d, 4).assemblies.filter(a => a.attrs.role === "superpod").sort((a, b) => b.qty_total - a.qty_total)[0];
+  const hall = d => tierOf(d, 5).assemblies.sort((a, b) => b.qty_total - a.qty_total)[0];
+  const rows = [
+    ["Node", d => esc(tierOf(d, 2).assemblies.find(a => a.id === "node").name)],
+    ["Scale-up", d => `${esc(d.spec.scale_up.technology)}, ${d.spec.scale_up.gpus_per_domain} GPUs, ${nf(d.spec.scale_up.gbytes_s_per_gpu)} GB/s per GPU`],
+    ["GPUs built", d => nf(d.summary.gpus)],
+    ["GPUs per rack", d => nf(rack(d).attrs.gpus)],
+    ["Racks", d => nf(d.summary.racks)],
+    ["Rack load", d => nf(rack(d).attrs.power_kw, 1) + " kW, " + rack(d).attrs.cooling],
+    ["SuperPod", d => `${nf(sp(d).attrs.gpus)} GPUs (${sp(d).attrs.racks} racks)`],
+    ["SuperPods", d => nf(d.summary.superpods)],
+    ["Data halls", d => `${d.summary.halls} (up to ${nf(hall(d).attrs.gpus)} GPUs, ${nf(hall(d).attrs.it_mw, 1)} MW)`],
+    ["Fabric", d => `${d.fabric.tiers}-tier, ${d.fabric.planes} × ${d.fabric.port_gbps}G planes, radix ${d.fabric.radix}`],
+    ["Leaf / spine / super-spine", d => `${nf(d.fabric.switches.leaf)} / ${nf(d.fabric.switches.spine)} / ${nf(d.fabric.switches.super_spine)}`],
+    ["Total switches", d => nf(d.fabric.switches.total)],
+    ["Optical modules (800G eq.)", d => nf(d.complexity.optical_modules_800g_eq)],
+    ["Copper / optical links", d => `${nf(d.complexity.links_copper)} / ${nf(d.complexity.links_optical)}`],
+    ["IT power", d => nf(d.summary.it_mw, 1) + " MW"],
+    ["Facility power", d => `${nf(d.summary.facility_mw, 1)} MW (PUE ${d.spec.facility.pue})`],
+    ["All-in power per GPU", d => nf(d.summary.kw_per_gpu_all_in, 2) + " kW"],
+    ["Capex (placeholder prices)", d => money(d.summary.capex_usd)],
+    ["Capex per GPU", d => money(d.summary.capex_per_gpu_usd)],
+    ["Install labor", d => nf(d.complexity.install_labor_hours) + " tech-hours"],
+    ["Field-replaceable units", d => nf(d.complexity.field_replaceable_units)],
+  ];
+  $("#view-compare").innerHTML = `<div class="panel stack"><div><div class="eyebrow">Side by side</div><h2>Architecture A vs B at the same GPU target</h2></div>
+    <div class="tablewrap"><table><thead><tr><th></th>${ds.map(d => `<th>${esc(SHORT[d.name] || d.name)}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(([k, f]) => `<tr><td class="muted">${k}</td>${ds.map(d => `<td class="num" style="text-align:left">${f(d)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`;
+}
+
+/* ---------- notes tab ---------- */
+function renderNotes() {
+  const d = doc();
+  const refs = Object.entries(d.references).map(([id, r]) => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a> <span class="muted">· ${esc(r.publisher)} · <code>${id}</code></span></li>`).join("");
+  $("#view-notes").innerHTML = `<div class="panel stack"><div><div class="eyebrow">Derivations for this design</div><h2>What the compiler checked</h2></div>
+    <ul class="notes">${d.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+    <div class="callout prose">Costs are round planning placeholders in an editable catalog (vendors do not publish most list prices). Replace them with quotes before using any total for a budget. Front-end, storage and out-of-band networks beyond a per-rack management switch are not modeled yet.</div>
+    <p class="muted" style="margin:0">Design digest <code>${d.digest.slice(0, 16)}</code>: the same spec and catalog always produce the same digest.</p></div>
+    <div class="panel stack"><div><div class="eyebrow">Open sources</div><h2>Standards, papers and datasheets behind the rules</h2></div><ul class="notes">${refs}</ul></div>`;
+}
+
+function render() {
+  renderHeader();
+  if (state.tab === "tiers") { renderLadder(); renderTier(); }
+  if (state.tab === "fabric") renderFabric();
+  if (state.tab === "compare") renderCompare();
+  if (state.tab === "notes") renderNotes();
+  save();
+}
+if (!NAMES.length) { document.querySelector(".wrap").innerHTML = "<p>No designs found. Run <code>dcd web</code> to build web/designs.js.</p>"; return; }
+render();
+})();
+</script>
+</body>
+</html>
