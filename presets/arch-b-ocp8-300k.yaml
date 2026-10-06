@@ -1,0 +1,64 @@
+# Architecture B: disaggregated 8-GPU OCP/OAI servers with an 8-way UALink
+# scale-up domain on the baseboard, 8-rail optimized 800G Clos.
+name: arch-b-ocp8-300k
+title: "Architecture B: Universal OCP 8-GPU style, 300K GPUs"
+architecture: "8-GPU OAI/UBB servers, 8-way UALink scale-up"
+description: >
+  Four 8-GPU servers per 48U hybrid-cooled rack (cold plates on GPU/CPU, air
+  for the rest). Each GPU has one 800G NIC split into 2 x 400G planes on an
+  8-rail optimized, non-blocking 3-tier Clos of 51.2T switches.
+gpu_target: 300000
+
+node:
+  name: "8-GPU OAI server"
+  form: server
+  accelerator: gpu-oam-1000w
+  accelerators: 8
+  nic: nic-800g
+  nics: 8
+  rack_units: 8
+  components:
+    cpu-x86-host: 2
+    dram-host-2tb: 1
+    nvme-e1s-7t6: 8
+    pcie-gen6-switch: 4
+    ualink-switch-asic: 2
+    node-8gpu-chassis: 1
+
+scale_up:
+  technology: "UALink 1.0"
+  domain: node
+  gpus_per_domain: 8
+  gbytes_s_per_gpu: 800
+  medium: "Baseboard PCB traces and internal copper, no optics"
+
+rack:
+  name: "48U ORv3 hybrid-cooled rack"
+  nodes: 4
+  frame: rack-48u-orv3
+  rack_units: 48
+  components:
+    oob-mgmt-switch: 1
+  power_shelf: power-shelf-33kw
+  power_shelf_spares: 1
+  power_budget_kw: 50
+  cooling: hybrid
+  liquid_fraction: 0.75
+
+scale_out:
+  switch: switch-51t2
+  nic_gbps: 800
+  planes: 2
+  oversubscription: 1.0
+  rails: 8           # GPU index within the server
+  su_racks: 16       # 64 servers = 512 GPUs: one leaf per rail per plane
+  sus_per_superpod: 8  # 64 leaves per plane = one full spine block (k/2)
+
+layout:
+  rack_width_m: 0.6
+  row_pitch_m: 3.0
+  hall_spacing_m: 150
+
+facility:
+  hall_it_mw_max: 60
+  pue: 1.25

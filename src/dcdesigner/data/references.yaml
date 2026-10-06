@@ -1,0 +1,126 @@
+# Open, public sources behind the design rules and default assumptions.
+# Every catalog entry and design rule cites one or more of these ids.
+# Nothing here is proprietary: specs come from public datasheets, standards,
+# MSAs and peer-reviewed papers. Prices are planning placeholders (see
+# catalog.yaml) because vendors do not publish list prices for most items.
+
+al-fares-2008:
+  title: "A Scalable, Commodity Data Center Network Architecture (k-ary fat-tree, k^3/4 hosts)"
+  publisher: "ACM SIGCOMM 2008"
+  url: "https://dl.acm.org/doi/10.1145/1402958.1402967"
+google-jupiter-2022:
+  title: "Jupiter Evolving: Transforming Google's Datacenter Network via Optical Circuit Switches and SDN"
+  publisher: "ACM SIGCOMM 2022"
+  url: "https://dl.acm.org/doi/10.1145/3544216.3544265"
+meta-roce-2024:
+  title: "RDMA over Ethernet for Distributed AI Training at Meta Scale"
+  publisher: "ACM SIGCOMM 2024"
+  url: "https://dl.acm.org/doi/10.1145/3651890.3672233"
+alibaba-hpn-2024:
+  title: "Alibaba HPN: A Data Center Network for Large Language Model Training (dual-plane, rail-optimized)"
+  publisher: "ACM SIGCOMM 2024"
+  url: "https://dl.acm.org/doi/10.1145/3651890.3672265"
+dcqcn-2015:
+  title: "Congestion Control for Large-Scale RDMA Deployments (DCQCN)"
+  publisher: "ACM SIGCOMM 2015"
+  url: "https://dl.acm.org/doi/10.1145/2785956.2787484"
+rfc7938:
+  title: "RFC 7938: Use of BGP for Routing in Large-Scale Data Centers"
+  publisher: "IETF"
+  url: "https://www.rfc-editor.org/rfc/rfc7938"
+rfc8950:
+  title: "RFC 8950: Advertising IPv4 NLRI with an IPv6 Next Hop (BGP unnumbered)"
+  publisher: "IETF"
+  url: "https://www.rfc-editor.org/rfc/rfc8950"
+rfc6996:
+  title: "RFC 6996: Autonomous System (AS) Reservation for Private Use (4-byte private ASNs)"
+  publisher: "IETF"
+  url: "https://www.rfc-editor.org/rfc/rfc6996"
+rfc3168:
+  title: "RFC 3168: The Addition of Explicit Congestion Notification (ECN) to IP"
+  publisher: "IETF"
+  url: "https://www.rfc-editor.org/rfc/rfc3168"
+ieee-8021qbb:
+  title: "IEEE 802.1Qbb Priority-based Flow Control (now part of IEEE 802.1Q)"
+  publisher: "IEEE"
+  url: "https://1.ieee802.org/dcb/802-1qbb/"
+ieee-8023df:
+  title: "IEEE 802.3df 800 Gb/s Ethernet (200G/lane PMDs: DR, FR, copper)"
+  publisher: "IEEE"
+  url: "https://www.ieee802.org/3/df/"
+osfp-msa:
+  title: "OSFP Multi-Source Agreement (800G / 1.6T pluggable form factor)"
+  publisher: "OSFP MSA"
+  url: "https://osfpmsa.org/"
+lpo-msa:
+  title: "Linear Pluggable Optics (LPO) Multi-Source Agreement"
+  publisher: "LPO MSA"
+  url: "https://www.lpo-msa.org/"
+nvidia-gb200-nvl72:
+  title: "NVIDIA GB200 NVL72 (72 GPUs, 36 Grace CPUs, 130 TB/s NVLink domain, liquid cooled)"
+  publisher: "NVIDIA"
+  url: "https://www.nvidia.com/en-us/data-center/gb200-nvl72/"
+nvidia-dgx-superpod-gb200:
+  title: "NVIDIA DGX SuperPOD Reference Architecture with DGX GB200 systems"
+  publisher: "NVIDIA"
+  url: "https://docs.nvidia.com/dgx-superpod/reference-architecture-scalable-infrastructure-gb200/latest/"
+nvidia-dgx-b200:
+  title: "NVIDIA DGX B200 (8-GPU HGX system, ~14.3 kW max)"
+  publisher: "NVIDIA"
+  url: "https://www.nvidia.com/en-us/data-center/dgx-b200/"
+ualink-1-0:
+  title: "UALink 200G 1.0 Specification (accelerator scale-up interconnect)"
+  publisher: "UALink Consortium"
+  url: "https://ualinkconsortium.org/"
+ocp-oai:
+  title: "OCP Open Accelerator Infrastructure (OAM module, UBB baseboard)"
+  publisher: "Open Compute Project"
+  url: "https://www.opencompute.org/projects/open-accelerator-infrastructure"
+ocp-rack-power:
+  title: "OCP Rack & Power (ORv3, high-power racks, Mt Diablo disaggregated power)"
+  publisher: "Open Compute Project"
+  url: "https://www.opencompute.org/projects/rack-and-power"
+ocp-cooling:
+  title: "OCP Cooling Environments (cold plate, CDU and facility liquid loop guidance)"
+  publisher: "Open Compute Project"
+  url: "https://www.opencompute.org/projects/cooling-environments"
+broadcom-th5:
+  title: "Broadcom Tomahawk 5 BCM78900 (51.2 Tb/s, 64x800G / 128x400G)"
+  publisher: "Broadcom"
+  url: "https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78900-series"
+broadcom-th6:
+  title: "Broadcom Tomahawk 6 BCM78910 (102.4 Tb/s, 64x1.6T / 128x800G)"
+  publisher: "Broadcom"
+  url: "https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78910-series"
+cisco-silicon-one:
+  title: "Cisco Silicon One G200 (51.2 Tb/s) and AI networking"
+  publisher: "Cisco"
+  url: "https://www.cisco.com/c/en/us/solutions/silicon-one.html"
+arista-ai:
+  title: "Arista AI Networking (Etherlink, rail-optimized leaf/spine designs)"
+  publisher: "Arista Networks"
+  url: "https://www.arista.com/en/solutions/ai-networking"
+juniper-ai-dc:
+  title: "Juniper AI Data Center networking (rail-optimized Ethernet fabrics for AI clusters)"
+  publisher: "Juniper Networks"
+  url: "https://www.juniper.net/us/en/solutions/data-center/ai-infrastructure.html"
+aws-ultracluster:
+  title: "Amazon EC2 UltraClusters (non-blocking petabit-scale networks for accelerators)"
+  publisher: "Amazon Web Services"
+  url: "https://aws.amazon.com/ec2/ultraclusters/"
+sonic:
+  title: "SONiC open-source network OS (config_db, FRR-based BGP)"
+  publisher: "SONiC Foundation / Linux Foundation"
+  url: "https://github.com/sonic-net/SONiC"
+frr:
+  title: "FRRouting documentation (BGP unnumbered, route-maps)"
+  publisher: "FRRouting"
+  url: "https://docs.frrouting.org/"
+uptime-pue:
+  title: "Uptime Institute Global Data Center Survey (industry PUE trends)"
+  publisher: "Uptime Institute"
+  url: "https://uptimeinstitute.com/resources/research-and-reports"
+cushman-cost-guide:
+  title: "Data Center Development Cost Guide (USD per MW of IT load, by market)"
+  publisher: "Cushman & Wakefield"
+  url: "https://www.cushmanwakefield.com/en/united-states/insights/data-center-development-cost-guide"

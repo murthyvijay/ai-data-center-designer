@@ -1,0 +1,69 @@
+# Architecture A: rack-scale NVL72-style system (72-GPU NVLink domain per
+# liquid-cooled rack), 800G per GPU scale-out on a rail-optimized Clos.
+name: arch-a-nvl72-300k
+title: "Architecture A: High-density NVL72 style, 300K GPUs"
+architecture: "Rack-scale 72-GPU NVLink domain (GB200 NVL72 class)"
+description: >
+  18 compute trays (2 Grace + 4 Blackwell) and 9 NVLink switch trays per rack,
+  all scale-up traffic on the passive copper spine. Each GPU has one 800G NIC
+  split into 2 x 400G planes so 51.2T switches reach 300K GPUs in three tiers.
+gpu_target: 300000
+
+node:
+  name: "GB200 compute tray"
+  form: tray
+  accelerator: gpu-gb200
+  accelerators: 4
+  nic: nic-800g
+  nics: 4
+  rack_units: 1
+  components:
+    cpu-grace: 2
+    nvme-e1s-7t6: 4
+    tray-gb200-chassis: 1
+
+scale_up:
+  technology: "NVLink 5"
+  domain: rack
+  gpus_per_domain: 72
+  gbytes_s_per_gpu: 1800
+  medium: "Passive copper backplane (NVLink spine cartridges), no optics"
+  switch_tray:
+    name: "NVLink switch tray"
+    per_domain: 9
+    rack_units: 1
+    components:
+      nvlink5-switch-asic: 2
+      tray-nvlink-chassis: 1
+
+rack:
+  name: "NVL72 liquid-cooled rack"
+  nodes: 18
+  frame: rack-nvl72-frame
+  rack_units: 48
+  components:
+    nvlink-spine-cartridge: 4
+    oob-mgmt-switch: 1
+  power_shelf: power-shelf-33kw
+  power_shelf_spares: 1
+  power_budget_kw: 132
+  cooling: liquid
+  liquid_fraction: 0.9
+
+scale_out:
+  switch: switch-51t2
+  nic_gbps: 800
+  planes: 2          # 2 x 400G planes: radix 128 per plane keeps the fabric at 3 tiers
+  oversubscription: 1.0
+  rails: 4           # GPU position within a compute tray
+  su_racks: 14       # 1,008 GPUs: 252 per rail = 4 leaves per rail at 64 down ports
+  sus_per_superpod: 4  # 64 leaves per plane = one full spine block (k/2)
+
+layout:
+  rack_width_m: 0.6
+  row_pitch_m: 3.6
+  hall_spacing_m: 150
+
+facility:
+  hall_it_mw_max: 100
+  pue: 1.15

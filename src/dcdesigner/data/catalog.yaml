@@ -1,0 +1,251 @@
+# Component catalog: the indivisible (Tier 1) elements and the shared
+# infrastructure items the compiler places at higher tiers.
+#
+# power_w   : typical design (TDP-class) power per unit, in watts.
+# cost_usd  : PLANNING PLACEHOLDER per unit. Vendors do not publish list
+#             prices for most of these parts; values are round numbers in
+#             the range of public press/analyst commentary and exist only so
+#             the tool can show relative cost structure. Replace them with
+#             your own quotes before using any total for a budget.
+# refs      : ids from references.yaml for the spec values.
+#
+# Edit freely: the compiler reads this file at run time and the output digest
+# changes whenever any value here changes.
+
+components:
+  # ---------------------------------------------------------------- compute
+  gpu-gb200:
+    name: "Blackwell GPU (GB200 superchip half)"
+    category: accelerator
+    power_w: 1200
+    cost_usd: 37500
+    specs: {hbm_gb: 186, scale_up_gbytes_s: 1800, scale_up: "NVLink 5"}
+    refs: [nvidia-gb200-nvl72]
+  gpu-oam-1000w:
+    name: "OAM accelerator, 1000 W class (B200 / MI3xx class)"
+    category: accelerator
+    power_w: 1000
+    cost_usd: 30000
+    specs: {hbm_gb: 180, scale_up_gbytes_s: 800, scale_up: "UALink 1.0 / vendor link"}
+    refs: [ocp-oai, ualink-1-0, nvidia-dgx-b200]
+  cpu-grace:
+    name: "Grace CPU (72-core Arm, incl. LPDDR5X)"
+    category: cpu
+    power_w: 300
+    cost_usd: 6000
+    specs: {cores: 72, memory_gb: 480}
+    refs: [nvidia-gb200-nvl72]
+  cpu-x86-host:
+    name: "Host CPU (x86 / Arm server class)"
+    category: cpu
+    power_w: 350
+    cost_usd: 9000
+    specs: {cores: 64}
+    refs: [nvidia-dgx-b200]
+  dram-host-2tb:
+    name: "Host DDR5 memory, 2 TB per node"
+    category: memory
+    power_w: 320
+    cost_usd: 16000
+    specs: {capacity_gb: 2048}
+    refs: [nvidia-dgx-b200]
+  nvme-e1s-7t6:
+    name: "NVMe SSD 7.68 TB (local scratch)"
+    category: storage
+    power_w: 25
+    cost_usd: 1200
+    specs: {capacity_tb: 7.68}
+    refs: [nvidia-dgx-b200]
+  nic-800g:
+    name: "800G SuperNIC / HCA (ConnectX-8 class, PCIe Gen6 x16)"
+    category: nic
+    power_w: 45
+    cost_usd: 3500
+    specs: {port_gbps: 800, pcie: "Gen6 x16", multi_plane: true}
+    refs: [meta-roce-2024, alibaba-hpn-2024]
+  pcie-gen6-switch:
+    name: "PCIe Gen6 switch (144-lane class)"
+    category: pcie
+    power_w: 75
+    cost_usd: 1500
+    specs: {lanes: 144}
+    refs: [ocp-oai]
+  nvlink5-switch-asic:
+    name: "NVLink 5 switch ASIC (72 ports x 100 GB/s)"
+    category: scale_up_switch
+    power_w: 650
+    cost_usd: 15000
+    specs: {aggregate_tbytes_s: 7.2}
+    refs: [nvidia-gb200-nvl72]
+  ualink-switch-asic:
+    name: "UALink 1.0 scale-up switch ASIC"
+    category: scale_up_switch
+    power_w: 300
+    cost_usd: 8000
+    specs: {lane_gbps: 200}
+    refs: [ualink-1-0]
+
+  # ------------------------------------------------------ node / tray shells
+  tray-gb200-chassis:
+    name: "GB200 compute tray chassis, cold plates, board, BMC"
+    category: chassis
+    power_w: 150
+    cost_usd: 25000
+    specs: {ru: 1}
+    refs: [nvidia-gb200-nvl72]
+  tray-nvlink-chassis:
+    name: "NVLink switch tray chassis"
+    category: chassis
+    power_w: 100
+    cost_usd: 12000
+    specs: {ru: 1}
+    refs: [nvidia-gb200-nvl72]
+  node-8gpu-chassis:
+    name: "8-GPU server chassis (OAI UBB baseboard, fans, PSUs, BMC)"
+    category: chassis
+    power_w: 900
+    cost_usd: 45000
+    specs: {ru: 8}
+    refs: [ocp-oai, nvidia-dgx-b200]
+
+  # ------------------------------------------------------------- rack level
+  rack-nvl72-frame:
+    name: "NVL72 rack frame, liquid manifold, busbar"
+    category: rack
+    power_w: 0
+    cost_usd: 60000
+    specs: {ru: 48}
+    refs: [nvidia-gb200-nvl72, ocp-rack-power]
+  nvlink-spine-cartridge:
+    name: "NVLink copper spine cartridge (passive backplane cable set)"
+    category: scale_up_copper
+    power_w: 0
+    cost_usd: 18000
+    specs: {cables: 1296}
+    refs: [nvidia-gb200-nvl72]
+  rack-48u-orv3:
+    name: "48U ORv3 rack, rear-door / manifold (hybrid cooling)"
+    category: rack
+    power_w: 0
+    cost_usd: 25000
+    specs: {ru: 48}
+    refs: [ocp-rack-power]
+  power-shelf-33kw:
+    name: "Power shelf, 33 kW (6 x 5.5 kW PSU)"
+    category: power
+    power_w: 0
+    cost_usd: 9000
+    specs: {capacity_kw: 33}
+    refs: [ocp-rack-power]
+  oob-mgmt-switch:
+    name: "Out-of-band management switch (1G/10G, 48 port)"
+    category: network_mgmt
+    power_w: 150
+    cost_usd: 4000
+    specs: {}
+    refs: [rfc7938]
+
+  # --------------------------------------------------------- scale-out fabric
+  switch-51t2:
+    name: "51.2T Ethernet switch (64 x 800G OSFP, TH5 / G200 class), 2RU"
+    category: switch
+    power_w: 1400
+    cost_usd: 45000
+    specs: {asic_gbps: 51200, cages: 64, cage_gbps: 800, ru: 2, buffer_mb: 165}
+    refs: [broadcom-th5, cisco-silicon-one, arista-ai, juniper-ai-dc]
+  switch-102t4:
+    name: "102.4T Ethernet switch (64 x 1.6T OSFP, TH6 class), 2RU"
+    category: switch
+    power_w: 2400
+    cost_usd: 85000
+    specs: {asic_gbps: 102400, cages: 64, cage_gbps: 1600, ru: 2, buffer_mb: 200}
+    refs: [broadcom-th6]
+
+  # ------------------------------------------------------ campus / facility
+  wan-edge-router:
+    name: "Campus WAN edge / DCI router (400G ZR capable)"
+    category: wan
+    power_w: 3000
+    cost_usd: 250000
+    specs: {}
+    refs: [rfc7938]
+  cdu-1500kw:
+    name: "Coolant distribution unit, 1.5 MW liquid-to-liquid"
+    category: cooling
+    power_w: 0
+    cost_usd: 400000
+    specs: {capacity_kw: 1500}
+    refs: [ocp-cooling]
+  mpo-patch-panel:
+    name: "1U MPO/MTP patch panel (48 MPO ports)"
+    category: structured_cabling
+    power_w: 0
+    cost_usd: 1500
+    specs: {ports: 48}
+    refs: [osfp-msa]
+  substation-250mva:
+    name: "Utility substation bay, 250 MVA (cost carried in facility capex)"
+    category: utility
+    power_w: 0
+    cost_usd: 0
+    specs: {capacity_mw: 225}
+    refs: [cushman-cost-guide]
+
+# Link media. A link is classified by its routed length into the cheapest
+# allowed class whose reach covers it. Costs and power are per 800G of
+# capacity at one end (a 400G logical port uses half a twin-port module).
+media:
+  dac:
+    name: "Passive copper DAC (800G OSFP)"
+    kind: copper
+    max_reach_m: 2.5
+    end_power_w: 0.0
+    end_cost_usd: 125
+    fiber: none
+    refs: [ieee-8023df, osfp-msa]
+  aec:
+    name: "Active electrical cable AEC (800G, retimed copper)"
+    kind: copper
+    max_reach_m: 7
+    end_power_w: 6.0
+    end_cost_usd: 300
+    fiber: none
+    refs: [ieee-8023df, osfp-msa]
+  lpo:
+    name: "800G LPO 2xDR4 (linear pluggable optics, no DSP)"
+    kind: optical
+    max_reach_m: 100
+    end_power_w: 8.5
+    end_cost_usd: 650
+    fiber: mpo-smf
+    refs: [lpo-msa, osfp-msa]
+  dr:
+    name: "800G 2xDR4 / DR8 retimed optics (500 m SMF)"
+    kind: optical
+    max_reach_m: 500
+    end_power_w: 15.0
+    end_cost_usd: 850
+    fiber: mpo-smf
+    refs: [ieee-8023df, osfp-msa]
+  fr:
+    name: "800G 2xFR4 retimed optics (2 km SMF)"
+    kind: optical
+    max_reach_m: 2000
+    end_power_w: 16.5
+    end_cost_usd: 1100
+    fiber: lc-smf
+    refs: [ieee-8023df, osfp-msa]
+
+fiber:
+  mpo-smf: {name: "MPO-16 SMF trunk", cost_per_link_usd: 40, cost_per_m_usd: 1.2}
+  lc-smf: {name: "Duplex LC SMF jumper/trunk", cost_per_link_usd: 25, cost_per_m_usd: 0.4}
+
+facility:
+  capex_usd_per_mw_it: 11000000   # powered shell + electrical + mechanical, per MW IT
+  refs: [cushman-cost-guide, uptime-pue]
+
+labor:
+  rack_install_hours: 6
+  switch_install_hours: 1.5
+  copper_termination_minutes: 3
+  optical_termination_minutes: 6
